@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8533661885126473702}
   - component: {fileID: 4735032374433782881}
   - component: {fileID: 7867011637124073699}
+  - component: {fileID: 3789289604645551107}
   m_Layer: 6
   m_Name: GenericEnemy
   m_TagString: Untagged
@@ -131,3 +132,21 @@ MonoBehaviour:
   m_ObjectForwardAxis: 2
   m_ObjectUpAxis: 1
   m_StartOffset: 0
+--- !u!114 &3789289604645551107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6113006289107109103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad105396ddef82e4b9df1aeab3fd1310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_displayName: Generic
+  baseSpeed: 1
+  baseHealth: 1
+  spawnAmountMultiplier: 1
+  spawnSpeedMultiplier: 1
+  splineAnimate: {fileID: 7867011637124073699}
