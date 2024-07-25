@@ -4,7 +4,7 @@ using Unity.Mathematics;
 using System.Collections.Generic;
 
 [RequireComponent (typeof(SplineContainer))]
-public class MapCreator : MonoBehaviour
+public class TrackCreator : MonoBehaviour
 {
     [SerializeField]
     int numPoints;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Splines;
 
-public class Enemy : MonoBehaviour
+public class EnemyAttributes : MonoBehaviour
 {
     const float BASE_SPLINE_DURATION = 15.0f;
 
@@ -23,10 +23,12 @@ public class Enemy : MonoBehaviour
     public float currentHealth => baseHealth - damageTaken;
 
     [SerializeField]
-    float spawnAmountMultiplier = 1.0f;
+    float m_spawnAmountMultiplier = 1.0f;
+    public float spawnAmountMultiplier { get { return m_spawnAmountMultiplier; } }
 
     [SerializeField]
-    float spawnSpeedMultiplier = 1.0f;
+    float m_spawnInterval = 1.0f;
+    public float spawnInterval { get { return m_spawnInterval; } }
 
     [SerializeField]
     SplineAnimate splineAnimate;
