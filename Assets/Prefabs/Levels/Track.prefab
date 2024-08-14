@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 1564825642866870086}
   - component: {fileID: 6203303381953685834}
   - component: {fileID: 4763383067653299636}
-  m_Layer: 0
+  - component: {fileID: 7665001737034064069}
+  m_Layer: 8
   m_Name: Track
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6475175310409076139}
@@ -170,6 +171,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackSpline: {fileID: 1271791018805298253}
+--- !u!64 &7665001737034064069
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998296934612062922}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: de52f60b01f141540b0e2f3dc0574770, type: 2}
 --- !u!1 &2146235606669523873
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,3 +420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9a17e134af2a543ab1ea1fb2ad7610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OnEnemyExited:
+    m_PersistentCalls:
+      m_Calls: []

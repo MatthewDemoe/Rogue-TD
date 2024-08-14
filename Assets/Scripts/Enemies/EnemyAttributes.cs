@@ -22,6 +22,8 @@ public class EnemyAttributes : MonoBehaviour
     float damageTaken = 0.0f;
     public float currentHealth => baseHealth - damageTaken;
 
+    public float distance => splineAnimate.ElapsedTime / splineAnimate.Duration;
+
     [SerializeField]
     float m_spawnAmountMultiplier = 1.0f;
     public float spawnAmountMultiplier { get { return m_spawnAmountMultiplier; } }
@@ -33,15 +35,43 @@ public class EnemyAttributes : MonoBehaviour
     [SerializeField]
     SplineAnimate splineAnimate;
 
+    EnemyActions enemyActions;
+
     private UnityEvent OnSpeedChanged = new();
+    private UnityEvent OnHealthChanged = new();
 
     private void Start()
     {
         if(splineAnimate == null)
             splineAnimate = GetComponent<SplineAnimate>();
 
+        enemyActions = GetComponent<EnemyActions>();
+
         OnSpeedChanged.AddListener(AdjustAnimationDuration);
         OnSpeedChanged.Invoke();
+        OnHealthChanged.AddListener(CheckIfKilled);
+    }
+
+    public void TakeHit(Tower tower)
+    {
+        TakeDamage(tower.damage);
+    }
+
+    private void TakeDamage(float amount)
+    {
+        print($"Taking {amount} damage.");
+
+        damageTaken += amount;
+        OnHealthChanged.Invoke();
+    }
+
+    private void CheckIfKilled()
+    {
+        if (currentHealth <= 0.0f)
+        {
+            enemyActions.OnKilled.Invoke();
+            Destroy(gameObject);
+        }
     }
 
     private void AdjustAnimationDuration()
