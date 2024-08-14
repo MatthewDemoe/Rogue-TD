@@ -1,6 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Splines;
-
 
 public class EnemyFactory : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class EnemyFactory : MonoBehaviour
 
     [SerializeField]
     SplineContainer trackSpline;
+
 
     private void Awake()
     {
@@ -20,9 +22,11 @@ public class EnemyFactory : MonoBehaviour
         Instance = this;
     }
 
-    public void SpawnEnemy(GameObject enemyPrefab)
+    public GameObject SpawnEnemy(GameObject enemyPrefab)
     {
         GameObject spawnedEnemy = Instantiate(enemyPrefab);
         spawnedEnemy.GetComponent<SplineAnimate>().Container = trackSpline;
+
+        return spawnedEnemy;
     }
 }

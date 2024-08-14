@@ -13,11 +13,15 @@ public class EnemyActions : MonoBehaviour
 
     public void Exited()
     {
+        OnExited.Invoke();
+
         Destroy(gameObject);
     }
 
     public void Killed()
     {
+        OnKilled.Invoke();
+
         Destroy(gameObject);
     }
 }
