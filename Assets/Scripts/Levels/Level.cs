@@ -2,20 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Splines;
 
 public class Level : MonoBehaviour
 {
+    public static Level Instance { get; private set; }
+
     public int numWaves { get; private set; } = 10;
     public int currentWaveNum { get; private set; } = 0;
 
     public List<Wave> waves { get; private set; } = new();
 
-    List<GameObject> aliveEnemies = new List<GameObject>();
+    List<GameObject> aliveEnemies = new();
+
+    [SerializeField]
+    SplineContainer trackSpline;
+
+    [SerializeField]
+    private UnityEvent OnWaveComplete = new();
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogWarning($"Trying to implement more than one {this}");
+            Destroy(this);
+        }
+
+        Instance = this;
+    }
 
     private void Start()
     {
         GenerateWaves();
-        AdvanceWave();
     }
 
     public void AdvanceWave()
@@ -37,7 +57,8 @@ public class Level : MonoBehaviour
 
     private void CreateEnemy(GameObject enemyToSpawn)
     {
-        GameObject enemyInstance = EnemyFactory.Instance.SpawnEnemy(enemyToSpawn);
+        GameObject enemyInstance = Instantiate(enemyToSpawn);
+        enemyInstance.GetComponent<SplineAnimate>().Container = trackSpline;
 
         EnemyActions enemyActions = enemyInstance.GetComponent<EnemyActions>();
         enemyActions.OnExited.AddListener(() => RemoveEnemy(enemyInstance));
@@ -51,9 +72,7 @@ public class Level : MonoBehaviour
         aliveEnemies.Remove(removedEnemy);
 
         if (!aliveEnemies.Any())
-        {
-            AdvanceWave();
-        }
+            OnWaveComplete.Invoke();
     }
 
     public void ParseWave(Wave wave)

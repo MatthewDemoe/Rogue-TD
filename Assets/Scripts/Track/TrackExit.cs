@@ -22,6 +22,8 @@ public class TrackExit : MonoBehaviour
 
         List<BezierKnot> knots = trackSpline.Spline.Knots.ToList();
         exitCollider.center = knots[knots.Count - 1].Position;
+
+        OnEnemyExited.AddListener(enemy => PlayerProperties.Instance.AdjustLives(-1));
     }
 
     private void OnTriggerEnter(Collider other)
