@@ -10,21 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: Towers
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
+  m_GroupName: Packed Assets
   m_Data:
     m_SerializedData: []
-  m_GUID: c2850f99e6c2e7f4980c8b12a4023019
-  m_SerializeEntries:
-  - m_GUID: d7ca4d5917692834a8e89862d88a77d4
-    m_Address: Assets/Prefabs/Towers/BasicTower.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_GUID: b70f7f6562611214f98556ad0fc0d6f3
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9f90fde74e4f30340a0f0f7c214353c1, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: f5920c9c880d0f74ba2b4b32a2b2cb2b, type: 2}
-    - {fileID: 11400000, guid: be4f22e3313384341b2b11ee5204babc, type: 2}
+    - {fileID: 11400000, guid: c1aba25c8df656043a3810bcaad7a760, type: 2}
+    - {fileID: 11400000, guid: 8f6c08e964a6616419dfe43f7ba2ff14, type: 2}

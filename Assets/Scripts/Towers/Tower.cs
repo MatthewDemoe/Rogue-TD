@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -20,6 +21,12 @@ public class Tower : MonoBehaviour
 
     public float damage { get { return m_damage; } }
 
+    [SerializeField]
+    private int m_cost = 2;
+    public int cost { get { return m_cost; } }
+
+    private bool isFollowingMouse = false;
+
     List<EnemyAttributes> enemiesInRange = new();
 
     void Start()
@@ -30,6 +37,9 @@ public class Tower : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isFollowingMouse)
+            FollowMousePosition();
+
         TryShoot();
     }
 
@@ -53,6 +63,19 @@ public class Tower : MonoBehaviour
     public EnemyAttributes GetTarget()
     {
         return enemiesInRange.OrderBy(enemy => enemy.distance).Last();
+    }
+
+    public void SetFollowMousePosition(bool state)
+    {
+        isFollowingMouse = state;
+    }
+
+    private void FollowMousePosition()
+    {
+        Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        newPosition.z = 0.0f;
+
+        transform.position = newPosition;
     }
 
     private void OnTriggerEnter(Collider other)

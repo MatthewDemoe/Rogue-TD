@@ -18,6 +18,8 @@ public class PlayerProperties
     public int lives { get; private set; } = 15;
     public int money { get; private set; } = 5;
 
+    public bool isHoldingTower { get; set; } = false;
+
     public UnityEvent OnLivesChanges { get; private set; } = new();
     public UnityEvent OnMoneyChanged { get; private set; } = new();
 
