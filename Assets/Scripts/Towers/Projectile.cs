@@ -20,7 +20,10 @@ public class Projectile : DamageSource
     void FixedUpdate()
     {
         if (m_target == null)
+        {
+            Destroy(gameObject);
             return;
+        }
 
         m_direction = (m_target.transform.position - transform.position).normalized;
         rb.velocity = m_direction * speed;

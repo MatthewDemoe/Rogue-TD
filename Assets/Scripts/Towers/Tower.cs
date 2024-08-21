@@ -56,7 +56,7 @@ public class Tower : MonoBehaviour
         //EnemyAttributes targetEnemy = GetTarget();
         //targetEnemy.TakeDamage(damage);
 
-        GameObject projectileInstance = Instantiate(projectile);
+        GameObject projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity);
         projectileInstance.GetComponent<Projectile>().Initialize(this);
     }
 

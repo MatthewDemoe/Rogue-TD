@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class PlayerActions : MonoBehaviour
 {
     public static PlayerActions Instance { get; private set; } = null;
 
-    public UnityEvent OnPlayAreaClicked { get; private set; } = new();
 
     private void Awake()
     {
@@ -22,7 +22,10 @@ public class PlayerActions : MonoBehaviour
 
     public void OnLMB(InputAction.CallbackContext context)
     {
-        Debug.Log($"OnLMB");
+        bool hit = Physics.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.forward, out var raycastHit, Mathf.Infinity, LayerMask.GetMask("Default"));
+
+        if (PlayerProperties.Instance.isHoldingTower && hit)
+            TryPlaceTower();
     }
 
     public void OnRMB(InputAction.CallbackContext context)
@@ -45,19 +48,23 @@ public class PlayerActions : MonoBehaviour
 
         PlayerProperties.Instance.isHoldingTower = true;
 
-        OnPlayAreaClicked.AddListener(TryPlaceTower);
-
         return true;
     }
 
-    public void TryPlaceTower()
+    public bool TryPlaceTower()
     {
-        if (false) //Placeholder - return when placed over track. 
-            return;
+        Collider mainCollider = PlayerProperties.Instance.heldTower.GetComponents<Collider>().ToList().First(collider => !collider.isTrigger);
+
+        bool isColliding = Physics.BoxCast(PlayerProperties.Instance.heldTower.transform.position - Vector3.forward, mainCollider.bounds.extents, Vector3.forward, Quaternion.identity, Mathf.Infinity, LayerMask.GetMask("Track"));
+
+        if (isColliding) //Placeholder - return when placed over track. 
+            return false;
 
         PlayerProperties.Instance.heldTower.GetComponent<Tower>().SetFollowMousePosition(false);
         PlayerProperties.Instance.heldTower = null;
         PlayerProperties.Instance.isHoldingTower = false;
-        OnPlayAreaClicked.RemoveListener(TryPlaceTower);
+
+        return true;
     }
+
 }
