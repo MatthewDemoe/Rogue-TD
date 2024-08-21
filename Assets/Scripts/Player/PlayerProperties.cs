@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerProperties
@@ -19,6 +20,7 @@ public class PlayerProperties
     public int money { get; private set; } = 5;
 
     public bool isHoldingTower { get; set; } = false;
+    public GameObject heldTower = null;
 
     public UnityEvent OnLivesChanges { get; private set; } = new();
     public UnityEvent OnMoneyChanged { get; private set; } = new();

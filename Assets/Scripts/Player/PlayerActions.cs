@@ -1,20 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
-public class PlayerActions
+public class PlayerActions : MonoBehaviour
 {
-    private static PlayerActions _instance = null;
+    public static PlayerActions Instance { get; private set; } = null;
 
-    public static PlayerActions Instance
+    public UnityEvent OnPlayAreaClicked { get; private set; } = new();
+
+    private void Awake()
     {
-        get
+        if (Instance != null)
         {
-            if (_instance == null)
-                _instance = new PlayerActions();
-
-            return _instance;
+            Debug.LogWarning($"Trying to create more than one {this}");
+            Destroy(gameObject);
+            return;
         }
+
+        Instance = this;
+    }
+
+    public void OnLMB(InputAction.CallbackContext context)
+    {
+        Debug.Log($"OnLMB");
+    }
+
+    public void OnRMB(InputAction.CallbackContext context)
+    {
+        Debug.Log($"OnRMB");
     }
 
     public bool TryBuyTower(GameObject towerPrefab)
@@ -26,17 +39,25 @@ public class PlayerActions
 
         PlayerProperties.Instance.AdjustMoney(-towerProperties.cost);
 
-        GameObject towerInstance = GameObject.Instantiate(towerPrefab);
-        towerProperties = towerInstance.GetComponent<Tower>();
+        PlayerProperties.Instance.heldTower = GameObject.Instantiate(towerPrefab);
+        towerProperties = PlayerProperties.Instance.heldTower.GetComponent<Tower>();
         towerProperties.SetFollowMousePosition(true);
 
         PlayerProperties.Instance.isHoldingTower = true;
 
+        OnPlayAreaClicked.AddListener(TryPlaceTower);
+
         return true;
     }
 
-    public bool TryPlaceTower(GameObject towerInstance)
+    public void TryPlaceTower()
     {
-        return true;
+        if (false) //Placeholder - return when placed over track. 
+            return;
+
+        PlayerProperties.Instance.heldTower.GetComponent<Tower>().SetFollowMousePosition(false);
+        PlayerProperties.Instance.heldTower = null;
+        PlayerProperties.Instance.isHoldingTower = false;
+        OnPlayAreaClicked.RemoveListener(TryPlaceTower);
     }
 }
