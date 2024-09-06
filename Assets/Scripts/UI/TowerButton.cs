@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,12 @@ public class TowerButton : MonoBehaviour
 
     [SerializeField]
     GameObject towerPrefab;
+
+    [SerializeField]
+    TextMeshProUGUI towerName;
+
+    [SerializeField]
+    TextMeshProUGUI towerCost;
 
     Tower towerProperties;
 
@@ -25,6 +32,9 @@ public class TowerButton : MonoBehaviour
     {
         towerPrefab = tower;
         towerProperties = tower.GetComponent<Tower>();
+
+        towerName.text = towerProperties.towerName;
+        towerCost.text = towerProperties.cost.ToString();
     }
 
     public void BuyTower()

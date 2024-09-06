@@ -9,6 +9,11 @@ public class Tower : MonoBehaviour
     GameObject projectile;
 
     [SerializeField]
+    string m_towerName = string.Empty;
+
+    public string towerName { get { return m_towerName; } }
+
+    [SerializeField]
     private float range = 3.0f;
 
     [SerializeField]
@@ -68,6 +73,8 @@ public class Tower : MonoBehaviour
     public void SetFollowMousePosition(bool state)
     {
         isFollowingMouse = state;
+
+        FollowMousePosition();
     }
 
     private void FollowMousePosition()

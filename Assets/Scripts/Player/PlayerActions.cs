@@ -42,7 +42,7 @@ public class PlayerActions : MonoBehaviour
 
         PlayerProperties.Instance.AdjustMoney(-towerProperties.cost);
 
-        PlayerProperties.Instance.heldTower = GameObject.Instantiate(towerPrefab);
+        PlayerProperties.Instance.heldTower = Instantiate(towerPrefab);
         towerProperties = PlayerProperties.Instance.heldTower.GetComponent<Tower>();
         towerProperties.SetFollowMousePosition(true);
 
