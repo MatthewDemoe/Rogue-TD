@@ -20,7 +20,8 @@ MonoBehaviour:
   - m_GUID: d7ca4d5917692834a8e89862d88a77d4
     m_Address: BasicTower
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - tower
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9f90fde74e4f30340a0f0f7c214353c1, type: 2}

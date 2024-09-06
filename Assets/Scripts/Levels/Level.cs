@@ -20,6 +20,9 @@ public class Level : MonoBehaviour
     SplineContainer trackSpline;
 
     [SerializeField]
+    private UnityEvent OnWaveStart = new();
+
+    [SerializeField]
     private UnityEvent OnWaveComplete = new();
 
     private void Awake()
@@ -38,11 +41,13 @@ public class Level : MonoBehaviour
         GenerateWaves();
     }
 
-    public void AdvanceWave()
+    public void StartWave()
     {
         currentWaveNum++;
         Wave currentWave = waves[currentWaveNum];
         ParseWave(currentWave);
+
+        OnWaveStart.Invoke();
     }
 
     private void GenerateWaves()
