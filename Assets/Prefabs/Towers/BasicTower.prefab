@@ -144,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 1775551172230603131, guid: bd5d721ed11ec534db0a9394604a9d8b, type: 3}
   m_towerName: Basic Tower
+  m_description: Fires a projectile at the closest enemy.
   range: 3
   fireRate: 0.75
   m_damage: 0.5

@@ -7,22 +7,48 @@ using UnityEngine.UI;
 public class TowerButton : MonoBehaviour
 {
     [SerializeField]
-    Button button;
+    Button infoButton;
+
+    [SerializeField]
+    Button buyButton;
 
     [SerializeField]
     GameObject towerPrefab;
 
     [SerializeField]
-    TextMeshProUGUI towerName;
+    GameObject infoParent;
+
+    [SerializeField]
+    TextMeshProUGUI mainTowerName;
 
     [SerializeField]
     TextMeshProUGUI towerCost;
 
+    [SerializeField]
+    TextMeshProUGUI infoTowerName;
+
+    [SerializeField]
+    TextMeshProUGUI range;
+
+    [SerializeField]
+    TextMeshProUGUI damage;
+
+    [SerializeField]
+    TextMeshProUGUI fireRate;
+
+    [SerializeField]
+    TextMeshProUGUI description;
+
     Tower towerProperties;
+
+    bool displayingInfo = false;
 
     private void Awake()
     {
-        button.onClick.AddListener(BuyTower);
+        buyButton.onClick.AddListener(BuyTower);
+        buyButton.onClick.AddListener(ToggleDisplayingInfo);
+
+        infoButton.onClick.AddListener(ToggleDisplayingInfo);
 
         if (towerPrefab != null)
             SetTower(towerPrefab);
@@ -33,12 +59,27 @@ public class TowerButton : MonoBehaviour
         towerPrefab = tower;
         towerProperties = tower.GetComponent<Tower>();
 
-        towerName.text = towerProperties.towerName;
+        mainTowerName.text= towerProperties.towerName;
+        infoTowerName.text= towerProperties.towerName;
         towerCost.text = towerProperties.cost.ToString();
+
+        range.text = $"Range : {towerProperties.range}";
+        damage.text = $"Damage : {towerProperties.damage}";
+        fireRate.text = $"Fire Rate : {towerProperties.fireRate}";
+
+        description.text = towerProperties.description; 
     }
 
     public void BuyTower()
     {     
         PlayerActions.Instance.TryBuyTower(towerPrefab);
+    }
+
+    public void ToggleDisplayingInfo()
+    {
+        displayingInfo = !displayingInfo;
+
+        mainTowerName.gameObject.SetActive(!displayingInfo);
+        infoParent.gameObject.SetActive(displayingInfo);
     }
 }

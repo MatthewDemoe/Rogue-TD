@@ -14,10 +14,20 @@ public class Tower : MonoBehaviour
     public string towerName { get { return m_towerName; } }
 
     [SerializeField]
-    private float range = 3.0f;
+    [TextArea]
+    string m_description = string.Empty;
+
+    public string description { get { return m_description; } }
 
     [SerializeField]
-    private float fireRate = 1.0f;
+    private float m_range = 3.0f;
+
+    public float range { get { return m_range; } }
+
+    [SerializeField]
+    private float m_fireRate = 1.0f;
+
+    public float fireRate { get {return m_fireRate;} }
 
     private float timeSinceLastFire = 0.0f;
 
