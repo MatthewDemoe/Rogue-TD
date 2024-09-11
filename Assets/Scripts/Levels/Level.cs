@@ -22,8 +22,12 @@ public class Level : MonoBehaviour
     [SerializeField]
     private UnityEvent OnWaveStart = new();
 
+    public UnityEvent OnWaveStarted { get { return OnWaveStart; } }
+
     [SerializeField]
     private UnityEvent OnWaveComplete = new();
+
+    public UnityEvent OnWaveCompleted { get { return OnWaveComplete; } }
 
     private void Awake()
     {
@@ -38,6 +42,12 @@ public class Level : MonoBehaviour
 
     private void Start()
     {
+        PlayerProperties.Instance.incomeSources.AddIncomeSource(new IncomeSource
+            (
+                sourceName: "Wave Income",
+                amount: () => { return currentWaveNum % 3 > 0 ? 3 : 5; }
+            ));
+
         GenerateWaves();
     }
 
@@ -102,5 +112,10 @@ public class Level : MonoBehaviour
             CreateEnemy(waveAttributes.waveEnemy);
             yield return new WaitForSeconds(enemyAttributes.spawnInterval);
         }
+    }
+
+    private void GenerateIncome()
+    {
+        PlayerProperties.Instance.AdjustMoney(currentWaveNum + PlayerProperties.Instance.interest);
     }
 }
