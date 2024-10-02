@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 1271791018805298253}
   - component: {fileID: 8862722522117690788}
   - component: {fileID: 8850072888888261404}
+  - component: {fileID: 8090974376834181939}
   - component: {fileID: 1564825642866870086}
-  - component: {fileID: 6203303381953685834}
-  - component: {fileID: 4763383067653299636}
   - component: {fileID: 7665001737034064069}
   m_Layer: 8
   m_Name: Track
@@ -121,6 +120,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8090974376834181939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998296934612062922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a1ac6d9737e9947965c66eb155e297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_width: 0.25
+  splineResolution: 100
 --- !u!114 &1564825642866870086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,40 +150,6 @@ MonoBehaviour:
   maxDistance: 3
   minDistance: 3
   minAngle: 30
---- !u!114 &6203303381953685834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998296934612062922}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 222dc08d484f16869bdd89edd9d368fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Container: {fileID: 1271791018805298253}
-  m_RebuildOnSplineChange: 0
-  m_RebuildFrequency: 30
-  m_UpdateColliders: 1
-  m_Sides: 8
-  m_SegmentsPerUnit: 4
-  m_Capped: 1
-  m_Radius: 0.25
-  m_Range: {x: 0, y: 1}
---- !u!114 &4763383067653299636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998296934612062922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6218e977f2deb14da653dc0c6251e66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trackSpline: {fileID: 1271791018805298253}
 --- !u!64 &7665001737034064069
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -273,13 +252,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3968550399927218579}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.01, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6176119157904262603}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6971617338437055850
 MeshFilter:
   m_ObjectHideFlags: 0

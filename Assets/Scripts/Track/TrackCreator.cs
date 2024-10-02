@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
 using System.Collections.Generic;
+using System.Drawing;
 
 [RequireComponent (typeof(SplineContainer))]
 public class TrackCreator : MonoBehaviour
@@ -31,16 +32,13 @@ public class TrackCreator : MonoBehaviour
 
     SplineContainer splineContainer;
     Spline mapSpline;
-    SplineExtrude splineExtrude;
 
     void Awake()
     {
         splineContainer = GetComponent<SplineContainer>();
-        splineExtrude = GetComponent<SplineExtrude>();
         boundsCollider = GetComponentInChildren<BoxCollider>();
 
         AddPoints();
-        splineExtrude.enabled = true;
     }
 
     private void AddPoints()
@@ -81,6 +79,12 @@ public class TrackCreator : MonoBehaviour
         points = BreakUpClusters(points);
         points = FABRIK(points);
         points = AdjustAngles(points);
+
+
+        for (int i = 0; i < points.Count; i++)
+        {
+            points[i] = new float3(points[i].x, points[i].z, points[i].y);
+        }
 
         mapSpline = SplineFactory.CreateCatmullRom(points);
         splineContainer.AddSpline(mapSpline);
