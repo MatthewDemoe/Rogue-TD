@@ -59,19 +59,19 @@ public class TowerButton : MonoBehaviour
         towerPrefab = tower;
         towerProperties = tower.GetComponent<Tower>();
 
-        mainTowerName.text= towerProperties.towerName;
-        infoTowerName.text= towerProperties.towerName;
+        mainTowerName.text = towerProperties.towerName;
+        infoTowerName.text = towerProperties.towerName;
         towerCost.text = towerProperties.cost.ToString();
 
         range.text = $"Range : {towerProperties.range}";
         damage.text = $"Damage : {towerProperties.damage}";
         fireRate.text = $"Fire Rate : {towerProperties.fireRate}";
 
-        description.text = towerProperties.description; 
+        description.text = towerProperties.description;
     }
 
     public void BuyTower()
-    {     
+    {
         PlayerActions.Instance.TryBuyTower(towerPrefab);
     }
 
@@ -81,5 +81,13 @@ public class TowerButton : MonoBehaviour
 
         mainTowerName.gameObject.SetActive(!displayingInfo);
         infoParent.gameObject.SetActive(displayingInfo);
+    }
+
+    public void SetDisplayingInfo(bool state)
+    {
+        displayingInfo = state;
+
+        mainTowerName.gameObject.SetActive(!state);
+        infoParent.gameObject.SetActive(state);
     }
 }

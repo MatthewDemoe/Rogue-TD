@@ -623,11 +623,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 186454068249014595, guid: 1fabfd22601b65e41b6280f873576100, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.36534
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 186454068249014595, guid: 1fabfd22601b65e41b6280f873576100, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.3714424
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 186454068249014595, guid: 1fabfd22601b65e41b6280f873576100, type: 3}
       propertyPath: m_LocalPosition.z
@@ -665,6 +665,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3299364160881832655, guid: 1fabfd22601b65e41b6280f873576100, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 936357591}
+    - target: {fileID: 3299364160881832655, guid: 1fabfd22601b65e41b6280f873576100, type: 3}
+      propertyPath: graphicRaycaster
+      value: 
+      objectReference: {fileID: 43044787}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

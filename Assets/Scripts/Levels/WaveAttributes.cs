@@ -14,6 +14,7 @@ public struct WaveAttributes
     public GameObject waveEnemy;
     public int enemyAmount;
     public float spawnDelay;
+
     //...
     //Buffs or Special Abilities
    

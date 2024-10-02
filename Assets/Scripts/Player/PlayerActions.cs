@@ -2,11 +2,23 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using System.Linq;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class PlayerActions : MonoBehaviour
 {
     public static PlayerActions Instance { get; private set; } = null;
 
+    private UnityEvent _OnLeftClick = new();
+    public UnityEvent OnLeftClick { get { return _OnLeftClick; } }
+
+    [SerializeField]
+    GraphicRaycaster graphicRaycaster = null;
+
+    [SerializeField]
+    EventSystem eventSystem = null;
+    PointerEventData eventData = null;
 
     private void Awake()
     {
@@ -22,10 +34,26 @@ public class PlayerActions : MonoBehaviour
 
     public void OnLMB(InputAction.CallbackContext context)
     {
-        bool hit = Physics.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.forward, out var raycastHit, Mathf.Infinity, LayerMask.GetMask("Default"));
+        bool hitPlayArea = Physics.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.forward, out var _, Mathf.Infinity, LayerMask.GetMask("Default"));
 
-        if (PlayerProperties.Instance.isHoldingTower && hit)
+        if (PlayerProperties.Instance.isHoldingTower && hitPlayArea)
             TryPlaceTower();
+
+        List<RaycastResult> results = new();
+
+        eventData = new PointerEventData(eventSystem);
+        eventData.position = Input.mousePosition;
+        graphicRaycaster.Raycast(eventData, results);
+
+        foreach(var hit in results)
+        {
+            Debug.Log(hit.gameObject.name);
+        }
+
+        bool hitUI = results.Any();//Physics.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.forward, out var _, Mathf.Infinity, LayerMask.GetMask("UI"));
+
+        if(!hitUI)
+            OnLeftClick.Invoke();
     }
 
     public void OnRMB(InputAction.CallbackContext context)

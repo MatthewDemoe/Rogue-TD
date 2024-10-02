@@ -21,7 +21,8 @@ public class PlayerProperties
         incomeSources.AddIncomeSource(new IncomeSource
             (
                 sourceName: "Interest",
-                amount: () => { return interest; }
+                amount: () => { return interest; },
+                oneTime: false
             ));
 
         Level.Instance.OnWaveCompleted.AddListener(() => 
@@ -33,7 +34,8 @@ public class PlayerProperties
 
             Debug.Log($"Total Income: {incomeSources.GetTotalIncome()}");
 
-            AdjustMoney(incomeSources.GetTotalIncome());            
+            AdjustMoney(incomeSources.GetTotalIncome());
+            incomeSources.RemoveOneTimeIncomeSources();
         });
     }
 

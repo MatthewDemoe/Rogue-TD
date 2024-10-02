@@ -42,12 +42,13 @@ public class Level : MonoBehaviour
 
     private void Start()
     {
+        /*
         PlayerProperties.Instance.incomeSources.AddIncomeSource(new IncomeSource
             (
                 sourceName: "Wave Income",
                 amount: () => { return currentWaveNum % 3 > 0 ? 3 : 5; }
             ));
-
+        */
         GenerateWaves();
     }
 
@@ -56,7 +57,7 @@ public class Level : MonoBehaviour
         currentWaveNum++;
         Wave currentWave = waves[currentWaveNum];
         ParseWave(currentWave);
-
+        currentWave.Start();
         OnWaveStart.Invoke();
     }
 
@@ -64,8 +65,8 @@ public class Level : MonoBehaviour
     {
         for (int i = 0; i < numWaves; i++)
         {
-            Wave wave = new Wave();
-            wave.waveAttributes.Add(new WaveAttributes(EnemyLookup.Instance.hardEnemies[0], i));
+            Wave wave = new Wave( new List<WaveAttributes>() { new WaveAttributes(EnemyLookup.Instance.hardEnemies[0], i) }, (i % 3 > 0 ? 3 : 5));
+            //wave.waveAttributes.Add();
             waves.Add(wave);
         }
     }
@@ -107,15 +108,8 @@ public class Level : MonoBehaviour
 
         for (int i = 0; i < totalEnemies; i++)
         {
-            Debug.Log($"{i}");
-
             CreateEnemy(waveAttributes.waveEnemy);
             yield return new WaitForSeconds(enemyAttributes.spawnInterval);
         }
-    }
-
-    private void GenerateIncome()
-    {
-        PlayerProperties.Instance.AdjustMoney(currentWaveNum + PlayerProperties.Instance.interest);
     }
 }

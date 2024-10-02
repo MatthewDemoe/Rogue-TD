@@ -2,6 +2,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Shop : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class Shop : MonoBehaviour
     void Start()
     {
         GenerateTowerButtons();
+        PlayerActions.Instance.OnLeftClick.AddListener(DeselectButtons);
+    }
+
+    public void DeselectButtons()
+    {
+        towerButtonParent.GetComponentsInChildren<TowerButton>().ToList().ForEach(button => button.SetDisplayingInfo(false));
     }
 
     public void GenerateTowerButtons()
