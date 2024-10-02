@@ -1680,6 +1680,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1564825642866870086, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+      propertyPath: minAngle
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564825642866870086, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+      propertyPath: numPoints
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564825642866870086, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+      propertyPath: maxDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564825642866870086, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+      propertyPath: minDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1998296934612062922, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
       propertyPath: m_Name
       value: Track
