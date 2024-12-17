@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
 using System.Collections.Generic;
-using UnityEngine.Experimental.GlobalIllumination;
+using System.Linq;
+using UnityEditor.Splines;
 
 [RequireComponent (typeof(SplineContainer))]
 public class TrackCreator : MonoBehaviour
@@ -10,66 +11,101 @@ public class TrackCreator : MonoBehaviour
     [SerializeField]
     int numPoints;
 
-    [SerializeField]
-    float maxDistance = 2.0f;
-    float adjustmentMaxDistance => maxDistance * 0.9f;
-
-    [SerializeField]
-    float minDistance = 0.25f;
-    float clusterAdjustmentDistance => minDistance * 3f;
-
-    [SerializeField]
-    float minAngle = 30.0f;
-    float adjustmentAngle => minAngle * 1.1f;
-
-    const float MIN_RANGE = -7.5f;
+    const float LARGE_NUMBER = 1000.0f;
+    const float POISSON_RANGE = 50.0f;
     const float MAX_RANGE = 7.5f;
-    const int MAX_LOOPS = 25;
+    const float MIN_RANGE = -7.5f;
+    const int POISSON_RETRIES = 30;
+    const float POISSON_PERCENTAGE = 0.85f;
 
     float3 startPoint = Vector3.zero;
     float3 endPoint = Vector3.zero;
-    BoxCollider boundsCollider;
 
     SplineContainer splineContainer;
     Spline mapSpline;
 
-    bool allPointsInPlace = false;
+    [SerializeField]
+    List<Vector2> sampling = new();
+
+    [SerializeField]
+    float poissonRadius = 7.0f;
 
     void Awake()
     {
         splineContainer = GetComponent<SplineContainer>();
-        boundsCollider = GetComponentInChildren<BoxCollider>();
 
         AddPoints();
+
+        if(TryGetComponent(out SplineInstantiate splineInstantiate))
+            splineInstantiate.UpdateInstances();
     }
 
     private void AddPoints()
     {
         List<float3> points = new();
-
-        startPoint = CreatePointInBounds();
-        startPoint = ((Vector3)startPoint).normalized;
-        startPoint *= MAX_RANGE;
-
         startPoint = CreatePointOnEdge();
-
         points.Add(startPoint);
+        
+        sampling = PoissonDiskSampling(poissonRadius, POISSON_RETRIES);
+        List<Vector2> subset = new();
+        int index = 0;
 
         for (int i = 0; i < numPoints; i++)
         {
-            points.Add(CreatePointInBounds());
+            index = UnityEngine.Random.Range(0, sampling.Count);
+
+            subset.Add(sampling[index]);
+            sampling.RemoveAt(index);
         }
 
         endPoint = CreatePointOnEdge();
 
-        while ((startPoint.x == endPoint.x || startPoint.y == endPoint.y) || Vector3.Distance(startPoint, endPoint) < maxDistance)
+        while (Vector3.Distance(startPoint, endPoint) < MAX_RANGE)
         {
             endPoint = CreatePointOnEdge();
         }
 
-        points.Add(endPoint);
+        List<float3> unorderedPoints = new();
+        List<float3> pointsClosestToStart = new();
+        List<float3> pointsClosestToEnd = new();
 
-        points = AdjustSplinePoints(points);
+        subset.ForEach(point =>
+        {
+
+            point /= POISSON_RANGE;
+            float mappedX = UtilMath.Lmap(point.x, 0.0f, 1.0f, -MAX_RANGE, MAX_RANGE);
+            float mappedY = UtilMath.Lmap(point.y, 0.0f, 1.0f, -MAX_RANGE, MAX_RANGE);
+
+            unorderedPoints.Add(new float3(mappedX, mappedY, 0.0f) * POISSON_PERCENTAGE);
+        });
+
+        pointsClosestToStart = unorderedPoints.OrderBy(point => Vector3.Distance(point, startPoint)).ToList();
+        pointsClosestToEnd = unorderedPoints.OrderBy(point => Vector3.Distance(point, endPoint)).ToList();
+
+        int pointCounter = 0;
+        while (unorderedPoints.Any())
+        {
+            float3 point = pointsClosestToStart[0];
+            points.Insert(pointCounter + 1, point);
+
+            unorderedPoints.Remove(point);
+            pointsClosestToStart.Remove(point);
+            pointsClosestToEnd.Remove(point);
+
+            if (!pointsClosestToEnd.Any())
+                break;
+
+            point = pointsClosestToEnd[0];
+            points.Insert(points.Count - pointCounter, point);
+
+            unorderedPoints.Remove(point);
+            pointsClosestToStart.Remove(point);
+            pointsClosestToEnd.Remove(point);
+
+            pointCounter++;
+        }
+
+        points.Add(endPoint);
 
         for (int i = 0; i < points.Count; i++)
         {
@@ -86,9 +122,9 @@ public class TrackCreator : MonoBehaviour
 
         float3 point = CreatePointInBounds();
         point = ((Vector3)point).normalized;
-        point *= MAX_RANGE;
+        point *= LARGE_NUMBER;
 
-        Physics.Raycast(point * 2, -point, out hit, math.INFINITY);
+        Physics.Raycast(point, -point, out hit, math.INFINITY);
 
         return hit.point;
     }
@@ -101,142 +137,100 @@ public class TrackCreator : MonoBehaviour
         return new float3(positionX, positionY, 0.0f); 
     }
 
-    private List<float3> AdjustSplinePoints(List<float3> pointList)
+    Vector2 CreateVectorInBounds()
     {
-        int loopCounter = 0;
+        float positionX = UnityEngine.Random.Range(0, POISSON_RANGE);
+        float positionY = UnityEngine.Random.Range(0, POISSON_RANGE);
 
-        while (!allPointsInPlace)
-        {            
-            if (loopCounter > MAX_LOOPS)
-            {
-                Debug.Log("Loop Max reached");
-                break;
-            }
-
-            allPointsInPlace = true;
-            loopCounter++;
-
-            pointList = BreakUpClusters(pointList);
-            pointList = FABRIK(pointList);
-            pointList = AdjustAngles(pointList);           
-        }
-
-        //startPoint = 
-
-        return pointList;
+        return new Vector2(positionX, positionY);
     }
 
-    private List<float3> BreakUpClusters(List<float3> pointList)
-    {    
-        List<float3> adjustedPoints = pointList;
+    private bool IsValidPoint(Vector2[,] grid, float cellSize, int gridWidth, int gridHeight, Vector2 point, float radius)
+    {
+        if (point.x < 0 || point.x >= POISSON_RANGE || point.y < 0 || point.y >= POISSON_RANGE)
+            return false;
 
-        for (int i = 0; i < adjustedPoints.Count - 1; i++)
+        int xIndex = Mathf.FloorToInt(point.x / cellSize);
+        int yIndex = Mathf.FloorToInt(point.y / cellSize);
+
+        int i0 = Mathf.Max(xIndex - 1, 0);
+        int i1 = Mathf.Min(xIndex + 1, gridWidth - 1);
+
+        int j0 = Mathf.Max(yIndex - 1, 0);
+        int j1 = Mathf.Min(yIndex + 1, gridHeight - 1);
+
+        for (int i = i0; i <= i1; i++)
         {
-            for (int j = 1; j < adjustedPoints.Count - 2; j++)
+            for (int j = j0; j <= j1; j++)
             {
-                if (i == j)
-                    continue;
-
-                if (Vector3.Distance(adjustedPoints[i], adjustedPoints[j]) < minDistance)
+                if (grid[i,j] != null)
                 {
-                    allPointsInPlace = false;
-
-                    adjustedPoints[j] = CreatePointInBounds();
+                    if (Vector2.Distance(grid[i,j], point) < radius)
+                        return false;
                 }
             }
         }
 
-        return adjustedPoints;
+        return true;
     }
 
-    private List<float3> AdjustAngles(List<float3> pointList)
+    void InsertPoint(Vector2[,] grid, float cellSize, Vector2 point)
     {
-        List<float3> adjustedPoints = pointList;        
-        float angle = 0.0f;
+        int xIndex = Mathf.FloorToInt(point.x / cellSize);
+        int yIndex = Mathf.FloorToInt(point.y / cellSize);
 
-        for (int i = 1; i < adjustedPoints.Count - 3; i++)
-        {
-            Vector3 sideA = ((Vector3)(adjustedPoints[i - 1] - adjustedPoints[i])).normalized;
-            Vector3 sideB = ((Vector3)(adjustedPoints[i + 1] - adjustedPoints[i])).normalized;
-            angle = Vector3.Angle(sideA, sideB);
-
-            if (angle < minAngle)
-            {
-                allPointsInPlace = false;
-                sideB = Quaternion.AngleAxis(adjustmentAngle, Vector3.forward) * sideB;
-                adjustedPoints[i + 1] = boundsCollider.ClosestPoint(adjustedPoints[i] + ((float3)sideB * clusterAdjustmentDistance));
-            }
-        }
-
-        for (int i = adjustedPoints.Count - 2; i > 2; i--)
-        {
-            Vector3 sideA = ((Vector3)(adjustedPoints[i - 1] - adjustedPoints[i])).normalized;
-            Vector3 sideB = ((Vector3)(adjustedPoints[i + 1] - adjustedPoints[i])).normalized;
-            angle = Vector3.Angle(sideA, sideB);
-
-            if (angle < minAngle)
-            {
-                allPointsInPlace = false;
-                sideA = Quaternion.AngleAxis(-adjustmentAngle, Vector3.forward) * sideA;
-                adjustedPoints[i - 1] = boundsCollider.ClosestPoint(adjustedPoints[i] + ((float3)sideA * clusterAdjustmentDistance));
-            }
-        }
-
-        return adjustedPoints;
+        grid[xIndex, yIndex] = point;
     }
 
-    private List<float3> FABRIK(List<float3> pointList)
+    List<Vector2> PoissonDiskSampling(float radius, int k)
     {
-        List<float3> adjustedPoints = pointList;
+        int N = 2;
 
-        float distance = 0.0f;
+        List<Vector2> finalPoints = new();
+        List<Vector2> tempPoints = new();
 
-        for (int i = 0; i < adjustedPoints.Count - 1; i++)
+        Vector2 p0 = CreateVectorInBounds();
+
+        float cellSize = Mathf.Floor(radius / Mathf.Sqrt(N));
+
+        int numWidthCells = Mathf.CeilToInt(POISSON_RANGE / cellSize) + 1;
+        int numHeightCells = Mathf.CeilToInt(POISSON_RANGE / cellSize) + 1;
+
+        Vector2[,] grid = new Vector2[numWidthCells, numHeightCells];
+
+        InsertPoint(grid, cellSize, p0);
+        finalPoints.Add(p0);
+        tempPoints.Add(p0);
+
+        while (tempPoints.Count > 0)
         {
-            distance = Vector3.Distance(adjustedPoints[i], adjustedPoints[i + 1]);
+            int randomIndex = UnityEngine.Random.Range(0, tempPoints.Count);
+            Vector2 p = tempPoints[randomIndex];
 
-            if (distance > maxDistance)
+            bool found = false;
+            for (int tries = 0; tries < k; tries++)
             {
-                allPointsInPlace = false;
+                float theta = UnityEngine.Random.Range(0, 360);
+                float newRadius = UnityEngine.Random.Range(radius, 2 * radius);
 
-                float3 direction = ((Vector3)(adjustedPoints[i + 1] - adjustedPoints[i])).normalized;
-                float3 adjustedPoint = adjustedPoints[i] + (direction * adjustmentMaxDistance);
+                float newX = p.x + newRadius * Mathf.Cos(Mathf.Deg2Rad * theta);
+                float newY = p.y + newRadius * Mathf.Sin(Mathf.Deg2Rad * theta);
+                Vector2 newP = new Vector2(newX, newY);
 
-                adjustedPoints[i + 1] = boundsCollider.ClosestPoint(adjustedPoint);
+                if (!IsValidPoint(grid, cellSize, numWidthCells, numHeightCells, newP, radius))
+                    continue;
+
+                finalPoints.Add(newP);
+                InsertPoint(grid, cellSize, newP);
+                tempPoints.Add(newP);
+                found = true;
+                break;
             }
+
+            if(!found)
+                tempPoints.RemoveAt(randomIndex);
         }
 
-        RaycastHit hit;
-
-        endPoint = adjustedPoints[adjustedPoints.Count - 1];
-        endPoint = ((Vector3)endPoint).normalized;
-        endPoint *= MAX_RANGE;
-
-        Physics.Raycast(endPoint * 2, -endPoint, out hit, math.INFINITY);
-        adjustedPoints[adjustedPoints.Count - 1] = hit.point;
-
-        for (int i = adjustedPoints.Count - 1; i > 0; i--)
-        {
-            distance = Vector3.Distance(adjustedPoints[i], adjustedPoints[i - 1]);
-
-            if (distance > maxDistance)
-            {
-                allPointsInPlace = false;
-
-                float3 direction = ((Vector3)(adjustedPoints[i - 1] - adjustedPoints[i])).normalized;
-                float3 adjustedPoint = adjustedPoints[i] + (direction * adjustmentMaxDistance);
-
-                adjustedPoints[i - 1] = boundsCollider.ClosestPoint(adjustedPoint);
-            }
-        }
-
-        startPoint = adjustedPoints[0];
-        startPoint = ((Vector3)startPoint).normalized;
-        startPoint *= MAX_RANGE;
-
-        Physics.Raycast(startPoint * 2, -startPoint, out hit, math.INFINITY);
-        adjustedPoints[0] = hit.point;
-
-        return adjustedPoints;
+        return finalPoints;
     }
 }
