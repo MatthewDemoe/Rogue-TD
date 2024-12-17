@@ -61,6 +61,7 @@ public class SplineSampler : MonoBehaviour
         print($"Building Mesh");
         Mesh m = new();
         List<Vector3> vertices = new();
+        List<Vector2> UVs = new();
         List<int> tris = new();
         int offset = 0;
 
@@ -75,6 +76,14 @@ public class SplineSampler : MonoBehaviour
             Vector3 p3 = m_vertsP1[i];
             Vector3 p4 = m_vertsP2[i];
 
+            float uvY1 = (i - 1) / (float)(length - 1); // Normalize step range
+            float uvY2 = i / (float)(length - 1);
+
+            Vector2 uv1 = new Vector2(0.0f, uvY1);
+            Vector2 uv2 = new Vector2(1.0f, uvY1);
+            Vector2 uv3 = new Vector2(0.0f, uvY2);
+            Vector2 uv4 = new Vector2(1.0f, uvY2);
+
             offset = 4 * (i - 1);
 
             int t1 = offset + 0;
@@ -86,11 +95,14 @@ public class SplineSampler : MonoBehaviour
             int t6 = offset + 0;
 
             vertices.AddRange(new List<Vector3> { p1, p2, p3, p4});
+            UVs.AddRange(new List<Vector2> {uv1, uv2, uv3, uv4 });
             tris.AddRange(new List<int> { t1, t2, t3, t4, t5, t6 });
         }
 
         m.SetVertices(vertices);
         m.SetTriangles(tris, 0);
+        m.SetUVs(0, UVs.ToArray());
         m_meshFilter.mesh = m;
+        
     }
 }

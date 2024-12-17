@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1271791018805298253}
   - component: {fileID: 7433351962115177582}
   - component: {fileID: 2204727916738868281}
-  - component: {fileID: 6308866189668136343}
   - component: {fileID: 1564825642866870086}
+  - component: {fileID: 2273451228778604798}
   m_Layer: 8
   m_Name: Track
   m_TagString: Untagged
@@ -119,27 +119,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6308866189668136343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998296934612062922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 222dc08d484f16869bdd89edd9d368fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Container: {fileID: 1271791018805298253}
-  m_RebuildOnSplineChange: 0
-  m_RebuildFrequency: 30
-  m_UpdateColliders: 1
-  m_Sides: 8
-  m_SegmentsPerUnit: 30
-  m_Capped: 1
-  m_Radius: 0.25
-  m_Range: {x: 0, y: 1}
 --- !u!114 &1564825642866870086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,8 +133,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numPoints: 10
   sampling: []
-  pointPrefab: {fileID: 5004527311111479386, guid: 4e4641553ed68964fa267e8fdefc02f9, type: 3}
   poissonRadius: 8
+--- !u!114 &2273451228778604798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998296934612062922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a1ac6d9737e9947965c66eb155e297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_width: 0.33
+  splineResolution: 500
 --- !u!1 &2146235606669523873
 GameObject:
   m_ObjectHideFlags: 0
