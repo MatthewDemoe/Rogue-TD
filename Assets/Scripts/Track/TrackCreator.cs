@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Splines;
+using UnityEngine.UIElements;
 
 [RequireComponent (typeof(SplineContainer))]
 public class TrackCreator : MonoBehaviour
@@ -13,10 +14,12 @@ public class TrackCreator : MonoBehaviour
 
     const float LARGE_NUMBER = 1000.0f;
     const float POISSON_RANGE = 50.0f;
-    const float MAX_RANGE = 7.5f;
-    const float MIN_RANGE = -7.5f;
+    //const float MAX_RANGE = 7.5f;
+    //const float MIN_RANGE = -7.5f;
     const int POISSON_RETRIES = 30;
     const float POISSON_PERCENTAGE = 0.85f;
+
+    Bounds trackBounds;
 
     float3 startPoint = Vector3.zero;
     float3 endPoint = Vector3.zero;
@@ -30,14 +33,19 @@ public class TrackCreator : MonoBehaviour
     [SerializeField]
     float poissonRadius = 7.0f;
 
+    [SerializeField]
+    GameObject trackPlane;
+
     void Awake()
     {
         splineContainer = GetComponent<SplineContainer>();
 
+        trackBounds = trackPlane.GetComponent<MeshCollider>().bounds;
+        
         AddPoints();
 
         if(TryGetComponent(out SplineInstantiate splineInstantiate))
-            splineInstantiate.UpdateInstances();
+            splineInstantiate.UpdateInstances();        
     }
 
     private void AddPoints()
@@ -60,7 +68,7 @@ public class TrackCreator : MonoBehaviour
 
         endPoint = CreatePointOnEdge();
 
-        while (Vector3.Distance(startPoint, endPoint) < MAX_RANGE)
+        while (Vector3.Distance(startPoint, endPoint) < trackBounds.extents.magnitude)
         {
             endPoint = CreatePointOnEdge();
         }
@@ -71,10 +79,9 @@ public class TrackCreator : MonoBehaviour
 
         subset.ForEach(point =>
         {
-
             point /= POISSON_RANGE;
-            float mappedX = UtilMath.Lmap(point.x, 0.0f, 1.0f, -MAX_RANGE, MAX_RANGE);
-            float mappedY = UtilMath.Lmap(point.y, 0.0f, 1.0f, -MAX_RANGE, MAX_RANGE);
+            float mappedX = UtilMath.Lmap(point.x, 0.0f, 1.0f, trackBounds.min.x, trackBounds.max.x);
+            float mappedY = UtilMath.Lmap(point.y, 0.0f, 1.0f, trackBounds.min.z, trackBounds.max.z);
 
             unorderedPoints.Add(new float3(mappedX, mappedY, 0.0f) * POISSON_PERCENTAGE);
         });
@@ -126,15 +133,17 @@ public class TrackCreator : MonoBehaviour
 
         Physics.Raycast(point, -point, out hit, math.INFINITY);
 
-        return hit.point;
+        float3 returnVal = new float3(hit.point.x, hit.point.z, hit.point.y);
+
+        return returnVal;
     }
 
     float3 CreatePointInBounds()
     {
-        float positionX = UnityEngine.Random.Range(MIN_RANGE, MAX_RANGE);
-        float positionY = UnityEngine.Random.Range(MIN_RANGE, MAX_RANGE);
+        float positionX = UnityEngine.Random.Range(trackBounds.min.x, trackBounds.max.x);
+        float positionZ = UnityEngine.Random.Range(trackBounds.min.z, trackBounds.max.z);
 
-        return new float3(positionX, positionY, 0.0f); 
+        return new float3(positionX, 0.0f, positionZ); 
     }
 
     Vector2 CreateVectorInBounds()
