@@ -8,6 +8,7 @@ public class SplineSampler : MonoBehaviour
     private SplineContainer m_splineContainer;
 
     private MeshFilter m_meshFilter;
+    private MeshFilter m_directionMeshFilter;
 
     [SerializeField]
     float m_width = 0.25f;
@@ -22,10 +23,15 @@ public class SplineSampler : MonoBehaviour
     List<Vector3> m_vertsP1 = new();
     List<Vector3> m_vertsP2 = new();
 
+    [SerializeField]
+    GameObject directionIndicator;
+
     private void Awake()
     {
         m_splineContainer = GetComponent<SplineContainer>();
         m_meshFilter = GetComponent<MeshFilter>();
+
+        m_directionMeshFilter = directionIndicator.GetComponent<MeshFilter>();
     }
 
     void Start()
@@ -59,7 +65,9 @@ public class SplineSampler : MonoBehaviour
     private void BuildMesh()
     {
         print($"Building Mesh");
-        Mesh m = new();
+        Mesh trackMesh = new();
+        Mesh directionMesh = new();
+
         List<Vector3> vertices = new();
         List<Vector2> UVs = new();
         List<int> tris = new();
@@ -99,10 +107,15 @@ public class SplineSampler : MonoBehaviour
             tris.AddRange(new List<int> { t1, t2, t3, t4, t5, t6 });
         }
 
-        m.SetVertices(vertices);
-        m.SetTriangles(tris, 0);
-        m.SetUVs(0, UVs.ToArray());
-        m_meshFilter.mesh = m;
-        
+        trackMesh.SetVertices(vertices);
+        trackMesh.SetTriangles(tris, 0);
+        trackMesh.SetUVs(0, UVs.ToArray());
+
+        directionMesh.SetVertices(vertices);
+        directionMesh.SetTriangles(tris, 0);
+        directionMesh.SetUVs(0, UVs.ToArray());
+
+        m_meshFilter.mesh = trackMesh;        
+        m_directionMeshFilter.mesh = directionMesh;
     }
 }

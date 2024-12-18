@@ -1684,10 +1684,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Track
       objectReference: {fileID: 0}
-    - target: {fileID: 2204727916738868281, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 681df6138108e1042bf60f34ca396a21, type: 2}
     - target: {fileID: 6176119157904262603, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1726,10 +1722,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6176119157904262603, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6308866189668136343, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
