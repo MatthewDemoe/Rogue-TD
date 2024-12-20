@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using System.Collections;
 using System.Linq;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class Tower : HoldableItem
 {
     [SerializeField]
     GameObject projectile;
@@ -40,7 +39,6 @@ public class Tower : MonoBehaviour
     private int m_cost = 2;
     public int cost { get { return m_cost; } }
 
-    private bool isFollowingMouse = false;
 
     List<EnemyAttributes> enemiesInRange = new();
 
@@ -50,10 +48,9 @@ public class Tower : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
-        if (isFollowingMouse)
-            FollowMousePosition();
+        base.FixedUpdate();
 
         TryShoot();
     }
@@ -78,21 +75,6 @@ public class Tower : MonoBehaviour
     public EnemyAttributes GetTarget()
     {
         return enemiesInRange.OrderBy(enemy => enemy.distance).Last();
-    }
-
-    public void SetFollowMousePosition(bool state)
-    {
-        isFollowingMouse = state;
-
-        FollowMousePosition();
-    }
-
-    private void FollowMousePosition()
-    {
-        Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        newPosition.z = 0.0f;
-
-        transform.position = newPosition;
     }
 
     private void OnTriggerEnter(Collider other)

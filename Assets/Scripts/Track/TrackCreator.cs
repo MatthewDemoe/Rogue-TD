@@ -14,8 +14,6 @@ public class TrackCreator : MonoBehaviour
 
     const float LARGE_NUMBER = 1000.0f;
     const float POISSON_RANGE = 50.0f;
-    //const float MAX_RANGE = 7.5f;
-    //const float MIN_RANGE = -7.5f;
     const int POISSON_RETRIES = 30;
     const float POISSON_PERCENTAGE = 0.85f;
 
@@ -131,7 +129,7 @@ public class TrackCreator : MonoBehaviour
         point = ((Vector3)point).normalized;
         point *= LARGE_NUMBER;
 
-        Physics.Raycast(point, -point, out hit, math.INFINITY);
+        Physics.Raycast(point, -point, out hit, math.INFINITY, LayerMask.GetMask("Track"));
 
         float3 returnVal = new float3(hit.point.x, hit.point.z, hit.point.y);
 

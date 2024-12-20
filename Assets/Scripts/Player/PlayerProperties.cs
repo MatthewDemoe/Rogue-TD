@@ -44,8 +44,8 @@ public class PlayerProperties
 
     public int interest => money / 5;
 
-    public bool isHoldingTower { get; set; } = false;
-    public GameObject heldTower = null;
+    public bool isHoldingItem => heldItem is not null;
+    public HoldableItem heldItem { get; private set; } = null;
 
     public UnityEvent OnLivesChanges { get; private set; } = new();
     public UnityEvent OnMoneyChanged { get; private set; } = new();
@@ -62,5 +62,19 @@ public class PlayerProperties
     {
         money += amount;
         OnMoneyChanged.Invoke();
+    }
+
+    public void HoldItem(HoldableItem item)
+    {
+        heldItem = item;
+        heldItem.TryHoldStarted();
+    }
+
+    public void DropItem()
+    {
+        if(isHoldingItem)
+            heldItem.HoldEnded();
+
+        heldItem = null;
     }
 }
