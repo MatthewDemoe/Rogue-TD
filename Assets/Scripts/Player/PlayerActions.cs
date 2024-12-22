@@ -85,42 +85,18 @@ public class PlayerActions : MonoBehaviour
         Debug.Log($"OnRMB");
     }
 
-    public bool TryBuyTower(GameObject towerPrefab)
+    public bool CanBuyItem(HoldableItem item)
     {
-        Tower towerProperties = towerPrefab.GetComponent<Tower>();
+        return PlayerProperties.Instance.money >= item.cost;
+    }
 
-        /*
-        if (PlayerProperties.Instance.money < towerProperties.cost || PlayerProperties.Instance.isHoldingTower)
+    public bool TryBuyItem(HoldableItem item)
+    {        
+        if (PlayerProperties.Instance.money < item.cost)
             return false;
 
-        PlayerProperties.Instance.AdjustMoney(-towerProperties.cost);
-
-        PlayerProperties.Instance.heldTower = Instantiate(towerPrefab);
-        towerProperties = PlayerProperties.Instance.heldTower.GetComponent<Tower>();
-        towerProperties.SetFollowMousePosition(true);
-
-        PlayerProperties.Instance.isHoldingTower = true;
-        */
+        PlayerProperties.Instance.AdjustMoney(-item.cost);        
 
         return true;
     }
-
-    public bool TryPlaceTower()
-    {
-        /*
-        Collider mainCollider = PlayerProperties.Instance.heldTower.GetComponents<Collider>().ToList().First(collider => !collider.isTrigger);
-
-        bool isColliding = Physics.BoxCast(PlayerProperties.Instance.heldTower.transform.position - Vector3.forward, mainCollider.bounds.extents, Vector3.forward, Quaternion.identity, Mathf.Infinity, LayerMask.GetMask("Track"));
-
-        if (isColliding) //Placeholder - return when placed over track. 
-            return false;
-
-        PlayerProperties.Instance.heldTower.GetComponent<Tower>().SetFollowMousePosition(false);
-        PlayerProperties.Instance.heldTower = null;
-        PlayerProperties.Instance.isHoldingTower = false;
-        */
-
-        return true;
-    }
-
 }

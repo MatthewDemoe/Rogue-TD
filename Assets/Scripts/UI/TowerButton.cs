@@ -59,8 +59,8 @@ public class TowerButton : MonoBehaviour
         towerPrefab = tower;
         towerProperties = tower.GetComponent<Tower>();
 
-        mainTowerName.text = towerProperties.towerName;
-        infoTowerName.text = towerProperties.towerName;
+        mainTowerName.text = towerProperties.itemName;
+        infoTowerName.text = towerProperties.itemName;
         towerCost.text = towerProperties.cost.ToString();
 
         range.text = $"Range : {towerProperties.range}";
@@ -72,7 +72,7 @@ public class TowerButton : MonoBehaviour
 
     public void BuyTower()
     {
-        PlayerActions.Instance.TryBuyTower(towerPrefab);
+        //PlayerActions.Instance.TryBuyTower(towerPrefab);
     }
 
     public void ToggleDisplayingInfo()

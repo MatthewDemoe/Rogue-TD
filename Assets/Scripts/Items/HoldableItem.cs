@@ -5,6 +5,23 @@ public enum Zone { Empty, Shop, Inventory, Track }
 
 public abstract class HoldableItem : MonoBehaviour
 {
+    [SerializeField]
+    string m_itemName = string.Empty;
+
+    public string itemName { get { return m_itemName; } }
+
+    [SerializeField]
+    [TextArea]
+    string m_description = string.Empty;
+
+    public string description { get { return m_description; } }
+
+    [SerializeField]
+    private int m_cost = 2;
+    public int cost { get { return m_cost; } }
+
+    public int sellValue => cost / 2;
+
     private bool isHoldable = true;
     private bool isHeld = false;
 
@@ -57,13 +74,7 @@ public abstract class HoldableItem : MonoBehaviour
         bool isColliding = Physics.BoxCast(transform.position - Vector3.down, boxCollider.bounds.extents, Vector3.down, out var hitInfo, Quaternion.identity, Mathf.Infinity);
 
         if (!isColliding)
-        {
-            if (currentZone == Zone.Inventory)
-                ReturnToHoldingSlot();
-
-            else
-                ReturnToLastPlacement();
-        }
+            ReturnToProperLocation();
 
         if (isColliding)
         {
@@ -74,8 +85,11 @@ public abstract class HoldableItem : MonoBehaviour
                 PlaceInInventory(inventory);
             }
 
-            else if(hitInfo.collider.tag == Tags.TRACK)
-                PlaceOnTrack();      
+            else if (hitInfo.collider.tag == Tags.TRACK)
+                PlaceOnTrack();
+
+            else if (hitInfo.collider.tag == Tags.SHOP)
+                PlaceInShop();
         }
     }
 
@@ -89,6 +103,9 @@ public abstract class HoldableItem : MonoBehaviour
 
         if (inventory.TryAddItem(this))
             currentZone = Zone.Inventory;
+
+        else
+            ReturnToProperLocation();           
     }
 
     public void PlaceOnTrack()
@@ -98,6 +115,21 @@ public abstract class HoldableItem : MonoBehaviour
 
         currentZone = Zone.Track;
         lastPlacement = transform.position;
+    }
+
+    public void PlaceInShop()
+    {
+        if (currentZone == Zone.Shop)
+            ReturnToProperLocation();
+
+        RemoveFromHoldingSlot();
+        SellItem();
+    }
+
+    private void SellItem()
+    {
+        PlayerProperties.Instance.AdjustMoney(sellValue);
+        Destroy(gameObject);
     }
 
     public void RemoveFromHoldingSlot()
@@ -110,6 +142,15 @@ public abstract class HoldableItem : MonoBehaviour
     {
         holdingSlot = itemSlot;
         ReturnToHoldingSlot();
+    }
+
+    private void ReturnToProperLocation()
+    {
+        if (currentZone == Zone.Inventory || currentZone == Zone.Shop)
+            ReturnToHoldingSlot();
+
+        else
+            ReturnToLastPlacement();
     }
 
     private void ReturnToHoldingSlot()

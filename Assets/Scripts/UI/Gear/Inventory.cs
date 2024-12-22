@@ -5,6 +5,8 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [SerializeField]
+    GameObject towerSlotParent;
+
     List<ItemSlot> itemSlots = new();
 
     [SerializeField]
@@ -14,7 +16,9 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        TryAddItem(Instantiate(towerPrefab).GetComponent<HoldableItem>());
+        itemSlots = towerSlotParent.GetComponentsInChildren<ItemSlot>().ToList();
+
+        TryAddItem(Instantiate(towerPrefab, itemSlots[0].transform.position, Quaternion.identity).GetComponent<HoldableItem>());
     }
 
     private static Inventory instance = null;
@@ -43,6 +47,17 @@ public class Inventory : MonoBehaviour
 
         if (firstEmptySlot is null)
             return false;
+
+        bool canBuyTower = false;
+        if (holdableItem.currentZone == Zone.Shop)
+        {
+            canBuyTower = PlayerActions.Instance.CanBuyItem(holdableItem);
+            print(canBuyTower);
+            if (!canBuyTower)
+                return false;
+
+            PlayerActions.Instance.TryBuyItem(holdableItem);
+        }        
 
         firstEmptySlot.AddItem(holdableItem);
         holdableItem.currentZone = zone;

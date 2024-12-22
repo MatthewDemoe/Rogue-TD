@@ -8,17 +8,6 @@ public class Tower : HoldableItem
     GameObject projectile;
 
     [SerializeField]
-    string m_towerName = string.Empty;
-
-    public string towerName { get { return m_towerName; } }
-
-    [SerializeField]
-    [TextArea]
-    string m_description = string.Empty;
-
-    public string description { get { return m_description; } }
-
-    [SerializeField]
     private float m_range = 3.0f;
 
     public float range { get { return m_range; } }
@@ -35,10 +24,6 @@ public class Tower : HoldableItem
 
     public float damage { get { return m_damage; } }
 
-    [SerializeField]
-    private int m_cost = 2;
-    public int cost { get { return m_cost; } }
-
 
     List<EnemyAttributes> enemiesInRange = new();
 
@@ -46,7 +31,6 @@ public class Tower : HoldableItem
     {
         GetComponent<SphereCollider>().radius = range;
     }
-
 
     protected override void FixedUpdate()
     {

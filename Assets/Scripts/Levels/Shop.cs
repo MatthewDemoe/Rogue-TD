@@ -7,49 +7,56 @@ using System.Linq;
 public class Shop : MonoBehaviour
 {
     [SerializeField]
-    GameObject towerButtonParent;
+    GameObject towerSlotParent;
 
-    [SerializeField]
-    GameObject towerButtonPrefab;
+    List<ItemSlot> towerSlots = new();
+
+    Zone zone = Zone.Shop;
 
     void Start()
     {
-        GenerateTowerButtons();
-        PlayerActions.Instance.OnLeftClick.AddListener(DeselectButtons);
+        towerSlots = towerSlotParent.GetComponentsInChildren<ItemSlot>().ToList(); ;
+
+        GenerateTowers();
+
+        PlayerActions.Instance.OnLeftClick.AddListener(DeselectTowers);
     }
 
-    public void DeselectButtons()
+    public void DeselectTowers()
     {
-        towerButtonParent.GetComponentsInChildren<TowerButton>().ToList().ForEach(button => button.SetDisplayingInfo(false));
+        towerSlotParent.GetComponentsInChildren<TowerButton>().ToList().ForEach(button => button.SetDisplayingInfo(false));
     }
 
-    public void GenerateTowerButtons()
+    public void GenerateTowers()
     {
-        GameObject tower = null;
+        GameObject towerPrefab = null;
         AsyncOperationHandle<IList<GameObject>> loadHandle = Addressables.LoadAssetsAsync<GameObject>(
             new List<string>() { "tower" },
             addressable =>
             {
-                tower = addressable;
+                towerPrefab = addressable;
             }, Addressables.MergeMode.Intersection,
             false);
 
         loadHandle.WaitForCompletion();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < towerSlots.Count; i++)
         {
-            GameObject towerButtonInstance = Instantiate(towerButtonPrefab, towerButtonParent.transform);
-            towerButtonInstance.GetComponent<TowerButton>().SetTower(tower);
+            GameObject towerInstance = Instantiate(towerPrefab, towerSlots[i].transform.position, Quaternion.identity);
+            Tower tower = towerInstance.GetComponent<Tower>();
+            tower.currentZone = zone;
+
+            towerSlots[i].AddItem(tower);
         }
 
         Addressables.Release(loadHandle);
     }
 
-    public void ClearTowerButtons()
+    public void ClearShopTowers()
     {
-        foreach (Transform child in towerButtonParent.transform)
+        towerSlots.ForEach(towerSlot => 
         {
-            Destroy(child.gameObject);
-        }
+            towerSlot.DestroyItem();
+        });
     }
 }

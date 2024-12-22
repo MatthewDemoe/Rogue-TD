@@ -16,4 +16,10 @@ public class ItemSlot : MonoBehaviour
     {
         heldItem = null;
     }
+
+    public void DestroyItem()
+    {
+        Destroy(heldItem.gameObject);
+        heldItem = null;
+    }
 }
