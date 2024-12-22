@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Shop : MonoBehaviour
+public class Shop : ItemZone
 {
     [SerializeField]
     GameObject towerSlotParent;
 
     List<ItemSlot> towerSlots = new();
 
-    Zone zone = Zone.Shop;
+    public override Zone zone => Zone.Shop;
 
     void Start()
     {
@@ -58,5 +58,22 @@ public class Shop : MonoBehaviour
         {
             towerSlot.DestroyItem();
         });
+    }
+
+    public override bool TryPlacement(HoldableItem item)
+    {
+        if (item.currentZone == zone)
+            return false;
+
+        item.RemoveFromHoldingSlot();
+        SellItem(item);
+
+        return true;
+    }
+
+    private void SellItem(HoldableItem item)
+    {
+        PlayerProperties.Instance.AdjustMoney(item.sellValue);
+        Destroy(item.gameObject);
     }
 }

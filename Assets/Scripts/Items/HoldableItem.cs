@@ -1,7 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
-public enum Zone { Empty, Shop, Inventory, Track }
 
 public abstract class HoldableItem : MonoBehaviour
 {
@@ -29,7 +28,7 @@ public abstract class HoldableItem : MonoBehaviour
 
     private ItemSlot holdingSlot = null;
 
-    public Zone currentZone { get; set; } = Zone.Empty;
+    public ItemZone.Zone currentZone { get; set; } = ItemZone.Zone.Empty;
 
     public Vector3 lastPlacement = Vector3.zero;
 
@@ -71,65 +70,22 @@ public abstract class HoldableItem : MonoBehaviour
     {
         BoxCollider boxCollider = GetComponent<BoxCollider>();
 
-        bool isColliding = Physics.BoxCast(transform.position - Vector3.down, boxCollider.bounds.extents, Vector3.down, out var hitInfo, Quaternion.identity, Mathf.Infinity);
+        bool isColliding = Physics.BoxCast(transform.position - Vector3.down, boxCollider.bounds.extents, Vector3.down, out var hitInfo, 
+            Quaternion.identity, Mathf.Infinity, LayerMask.GetMask(new List<string>(){ "Track", "ItemZone" }.ToArray()));
 
         if (!isColliding)
+        {
             ReturnToProperLocation();
-
-        if (isColliding)
-        {
-            if (hitInfo.collider.tag == Tags.INVENTORY)
-            {
-                Inventory inventory = hitInfo.collider.GetComponentInParent<Inventory>();
-
-                PlaceInInventory(inventory);
-            }
-
-            else if (hitInfo.collider.tag == Tags.TRACK)
-                PlaceOnTrack();
-
-            else if (hitInfo.collider.tag == Tags.SHOP)
-                PlaceInShop();
-        }
-    }
-
-    public void PlaceInInventory(Inventory inventory)
-    {
-        if (currentZone == Zone.Inventory)
-        {
-            ReturnToHoldingSlot();
             return;
         }
 
-        if (inventory.TryAddItem(this))
-            currentZone = Zone.Inventory;
+        if (hitInfo.collider.TryGetComponent(out ItemZone newZone))
+        {
+            bool placedSuccessfully = newZone.TryPlacement(this);
 
-        else
-            ReturnToProperLocation();           
-    }
-
-    public void PlaceOnTrack()
-    {
-        if (currentZone == Zone.Inventory)
-            RemoveFromHoldingSlot();
-
-        currentZone = Zone.Track;
-        lastPlacement = transform.position;
-    }
-
-    public void PlaceInShop()
-    {
-        if (currentZone == Zone.Shop)
-            ReturnToProperLocation();
-
-        RemoveFromHoldingSlot();
-        SellItem();
-    }
-
-    private void SellItem()
-    {
-        PlayerProperties.Instance.AdjustMoney(sellValue);
-        Destroy(gameObject);
+            if (!placedSuccessfully)
+                ReturnToProperLocation();
+        }
     }
 
     public void RemoveFromHoldingSlot()
@@ -146,7 +102,7 @@ public abstract class HoldableItem : MonoBehaviour
 
     private void ReturnToProperLocation()
     {
-        if (currentZone == Zone.Inventory || currentZone == Zone.Shop)
+        if (currentZone == ItemZone.Zone.Inventory || currentZone == ItemZone.Zone.Shop)
             ReturnToHoldingSlot();
 
         else

@@ -2439,6 +2439,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Track
       objectReference: {fileID: 0}
+    - target: {fileID: 2949117273004549037, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3968550399927218579, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
       propertyPath: m_TagString
       value: Track
