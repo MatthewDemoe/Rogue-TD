@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class HoldableItem : MonoBehaviour
 {
     [SerializeField]
     string m_itemName = string.Empty;
-
     public string itemName { get { return m_itemName; } }
 
     [SerializeField]
@@ -70,14 +70,17 @@ public abstract class HoldableItem : MonoBehaviour
     {
         BoxCollider boxCollider = GetComponent<BoxCollider>();
 
-        bool isColliding = Physics.BoxCast(transform.position - Vector3.down, boxCollider.bounds.extents, Vector3.down, out var hitInfo, 
-            Quaternion.identity, Mathf.Infinity, LayerMask.GetMask(new List<string>(){ "Track", "ItemZone" }.ToArray()));
+        RaycastHit[] allHits = Physics.BoxCastAll(transform.position - Vector3.down, boxCollider.bounds.extents, Vector3.down, Quaternion.identity, Mathf.Infinity, LayerMask.GetMask(new List<string>() { "Track", "ItemZone" }.ToArray()));
+        bool isColliding = allHits.Any();
+        bool isCollidingWithTrack = allHits.Any((hit) => hit.collider.TryGetComponent(out SplineSampler _));
 
-        if (!isColliding)
+        if (!isColliding || isCollidingWithTrack)
         {
             ReturnToProperLocation();
             return;
         }
+
+        RaycastHit hitInfo = allHits.First((hit) => hit.collider.TryGetComponent(out ItemZone newZone));
 
         if (hitInfo.collider.TryGetComponent(out ItemZone newZone))
         {

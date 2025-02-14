@@ -37,6 +37,9 @@ public class SplineSampler : MonoBehaviour
     void Start()
     {
         BuildMesh();
+
+        if (TryGetComponent(out MeshCollider meshCollider))
+            meshCollider.sharedMesh = m_meshFilter.sharedMesh;
     }
 
     private void SampleSplineWidth(float t, out Vector3 p1, out Vector3 p2)

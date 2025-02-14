@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2204727916738868281}
   - component: {fileID: 1564825642866870086}
   - component: {fileID: 2273451228778604798}
+  - component: {fileID: 4907077766381329031}
   m_Layer: 8
   m_Name: Track
   m_TagString: Track
@@ -150,6 +151,28 @@ MonoBehaviour:
   m_width: 0.33
   splineResolution: 500
   directionIndicator: {fileID: 8349575026657398935}
+--- !u!64 &4907077766381329031
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998296934612062922}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 05802b40bc21cac449d6bce1ca574244, type: 2}
 --- !u!1 &3968550399927218579
 GameObject:
   m_ObjectHideFlags: 0
