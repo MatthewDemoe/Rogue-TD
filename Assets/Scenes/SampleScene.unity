@@ -2375,6 +2375,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Track
       objectReference: {fileID: 0}
+    - target: {fileID: 2819920857956146954, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+      propertyPath: position.x
+      value: 2.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6176119157904262603, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
