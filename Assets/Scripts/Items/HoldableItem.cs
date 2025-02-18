@@ -30,8 +30,9 @@ public abstract class HoldableItem : MonoBehaviour
     private bool isHeld = false;
 
     private float returnDuration = 0.5f;
-    private float mouseMoveThreshold = 0.5f;
+    private float initialMouseMoveThreshold = 0.5f;
     private float mouseDistance = 0.0f;
+    private bool hasDoneInitialMove = false;
 
     private ItemSlot holdingSlot = null;
 
@@ -64,6 +65,7 @@ public abstract class HoldableItem : MonoBehaviour
     {
         SetFollowMousePosition(false);
         CheckPlacement();
+        hasDoneInitialMove = false;
     }
 
     private void SetFollowMousePosition(bool state)
@@ -78,9 +80,10 @@ public abstract class HoldableItem : MonoBehaviour
 
         mouseDistance = Vector3.Distance(newPosition, transform.position);
 
-        if (mouseDistance < mouseMoveThreshold)
+        if(!hasDoneInitialMove && mouseDistance < initialMouseMoveThreshold)
             return;
 
+        hasDoneInitialMove = true;
         descriptionUI.SetActive(false);
         transform.position = newPosition;
     }
