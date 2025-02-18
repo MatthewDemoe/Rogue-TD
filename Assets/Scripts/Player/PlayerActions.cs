@@ -58,7 +58,8 @@ public class PlayerActions : MonoBehaviour
         {
             Debug.Log(hit.gameObject.name);
         }
-        bool hitUI = results.Any();//Physics.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.forward, out var _, Mathf.Infinity, LayerMask.GetMask("UI"));
+
+        bool hitUI = results.Any();
 
         if(!hitUI)
             OnLeftClick.Invoke();

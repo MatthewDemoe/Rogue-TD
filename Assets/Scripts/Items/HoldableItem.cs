@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class HoldableItem : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject descriptionUI;
+
     [SerializeField]
     string m_itemName = string.Empty;
     public string itemName { get { return m_itemName; } }
@@ -25,12 +30,20 @@ public abstract class HoldableItem : MonoBehaviour
     private bool isHeld = false;
 
     private float returnDuration = 0.5f;
+    private float mouseMoveThreshold = 0.5f;
+    private float mouseDistance = 0.0f;
 
     private ItemSlot holdingSlot = null;
 
     public ItemZone.Zone currentZone { get; set; } = ItemZone.Zone.Empty;
 
     public Vector3 lastPlacement = Vector3.zero;
+
+    private void Awake()
+    {
+        if (name == string.Empty)
+            name = GetType().Name;
+    }
 
     protected virtual void FixedUpdate()
     {
@@ -63,11 +76,19 @@ public abstract class HoldableItem : MonoBehaviour
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         newPosition.y = 0.0f;
 
+        mouseDistance = Vector3.Distance(newPosition, transform.position);
+
+        if (mouseDistance < mouseMoveThreshold)
+            return;
+
+        descriptionUI.SetActive(false);
         transform.position = newPosition;
     }
 
     protected virtual void CheckPlacement()
     {
+        descriptionUI.SetActive(true);
+
         BoxCollider boxCollider = GetComponent<BoxCollider>();
 
         RaycastHit[] allHits = Physics.BoxCastAll(transform.position - Vector3.down, boxCollider.bounds.extents, Vector3.down, Quaternion.identity, Mathf.Infinity, LayerMask.GetMask(new List<string>() { "Track", "ItemZone" }.ToArray()));

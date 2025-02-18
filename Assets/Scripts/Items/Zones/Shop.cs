@@ -18,8 +18,6 @@ public class Shop : ItemZone
         towerSlots = towerSlotParent.GetComponentsInChildren<ItemSlot>().ToList(); ;
 
         GenerateTowers();
-
-        PlayerActions.Instance.OnLeftClick.AddListener(DeselectTowers);
     }
 
     public void DeselectTowers()

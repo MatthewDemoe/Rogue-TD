@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,16 +8,7 @@ public class TowerButton : MonoBehaviour
     Button infoButton;
 
     [SerializeField]
-    Button buyButton;
-
-    [SerializeField]
-    GameObject towerPrefab;
-
-    [SerializeField]
     GameObject infoParent;
-
-    [SerializeField]
-    TextMeshProUGUI mainTowerName;
 
     [SerializeField]
     TextMeshProUGUI towerCost;
@@ -28,58 +17,39 @@ public class TowerButton : MonoBehaviour
     TextMeshProUGUI infoTowerName;
 
     [SerializeField]
-    TextMeshProUGUI range;
-
-    [SerializeField]
-    TextMeshProUGUI damage;
-
-    [SerializeField]
-    TextMeshProUGUI fireRate;
-
-    [SerializeField]
     TextMeshProUGUI description;
-
-    Tower towerProperties;
 
     bool displayingInfo = false;
 
     private void Awake()
     {
-        buyButton.onClick.AddListener(BuyTower);
-        buyButton.onClick.AddListener(ToggleDisplayingInfo);
+        Tower tower = GetComponentInParent<Tower>();
 
         infoButton.onClick.AddListener(ToggleDisplayingInfo);
 
-        if (towerPrefab != null)
-            SetTower(towerPrefab);
+        SetTower(tower);
+
+        PlayerActions.Instance.OnLeftClick.AddListener(HideDisplayInfo);
     }
 
-    public void SetTower(GameObject tower)
+    public void SetTower(Tower tower)
     {
-        towerPrefab = tower;
-        towerProperties = tower.GetComponent<Tower>();
+        infoTowerName.text = tower.itemName;
+        towerCost.text = $"${tower.cost}"; 
 
-        mainTowerName.text = towerProperties.itemName;
-        infoTowerName.text = towerProperties.itemName;
-        towerCost.text = towerProperties.cost.ToString();
-
-        range.text = $"Range : {towerProperties.range}";
-        damage.text = $"Damage : {towerProperties.damage}";
-        fireRate.text = $"Fire Rate : {towerProperties.fireRate}";
-
-        description.text = towerProperties.description;
+        description.text = tower.description;
     }
 
-    public void BuyTower()
+    private void HideDisplayInfo()
     {
-        //PlayerActions.Instance.TryBuyTower(towerPrefab);
+        displayingInfo = false;
+        infoParent.gameObject.SetActive(displayingInfo);
     }
 
     public void ToggleDisplayingInfo()
     {
         displayingInfo = !displayingInfo;
 
-        mainTowerName.gameObject.SetActive(!displayingInfo);
         infoParent.gameObject.SetActive(displayingInfo);
     }
 
@@ -87,7 +57,11 @@ public class TowerButton : MonoBehaviour
     {
         displayingInfo = state;
 
-        mainTowerName.gameObject.SetActive(!state);
         infoParent.gameObject.SetActive(state);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerActions.Instance.OnLeftClick.RemoveListener(HideDisplayInfo);
     }
 }
