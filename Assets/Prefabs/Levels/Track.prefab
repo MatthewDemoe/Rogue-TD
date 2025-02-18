@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 1271791018805298253}
   - component: {fileID: 7433351962115177582}
   - component: {fileID: 2204727916738868281}
+  - component: {fileID: 4907077766381329031}
   - component: {fileID: 8292250131916954068}
   - component: {fileID: 1564825642866870086}
   - component: {fileID: 2273451228778604798}
   - component: {fileID: 2336607687605075349}
-  - component: {fileID: 4907077766381329031}
   - component: {fileID: 2819920857956146954}
+  - component: {fileID: 1439799038888131231}
   m_Layer: 8
   m_Name: Track
   m_TagString: Track
@@ -124,6 +125,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4907077766381329031
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998296934612062922}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 05802b40bc21cac449d6bce1ca574244, type: 2}
 --- !u!95 &8292250131916954068
 Animator:
   serializedVersion: 7
@@ -204,28 +227,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!64 &4907077766381329031
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998296934612062922}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 05802b40bc21cac449d6bce1ca574244, type: 2}
 --- !u!114 &2819920857956146954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +244,18 @@ MonoBehaviour:
   instantiateInWorldSpace: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &1439799038888131231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998296934612062922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ec50c1038258b34bbfe0bdd8a99a9f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3968550399927218579
 GameObject:
   m_ObjectHideFlags: 0
