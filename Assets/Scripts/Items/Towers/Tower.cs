@@ -27,12 +27,12 @@ public class Tower : HoldableItem
 
     public float damage { get { return m_damage; } }
 
-
-    List<EnemyAttributes> enemiesInRange = new();
+    TowerEnemyTracker enemyTracker = null;
 
     void Start()
     {
         m_rangeCollider.radius = range;
+        enemyTracker = GetComponentInChildren<TowerEnemyTracker>();
     }
 
     protected override void FixedUpdate()
@@ -46,14 +46,10 @@ public class Tower : HoldableItem
     {
         timeSinceLastFire += Time.fixedDeltaTime;
 
-        if (!enemiesInRange.Any() || (timeSinceLastFire < fireRate))
+        if (!enemyTracker.enemiesInRange.Any() || (timeSinceLastFire < fireRate))
             return;
 
-        print("Firing");
         timeSinceLastFire = 0.0f;
-
-        //EnemyAttributes targetEnemy = GetTarget();
-        //targetEnemy.TakeDamage(damage);
 
         GameObject projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity);
         projectileInstance.GetComponent<Projectile>().Initialize(this);
@@ -61,24 +57,6 @@ public class Tower : HoldableItem
 
     public EnemyAttributes GetTarget()
     {
-        return enemiesInRange.OrderBy(enemy => enemy.distance).Last();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        EnemyAttributes enemy = other.gameObject.GetComponent<EnemyAttributes>();
-
-        enemiesInRange.Add(enemy);
-        other.gameObject.GetComponent<EnemyActions>().OnKilled.AddListener(() => enemiesInRange.Remove(enemy));
-        other.gameObject.GetComponent<EnemyActions>().OnExited.AddListener(() => enemiesInRange.Remove(enemy));
-
-        print($"{other.gameObject} entered");
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        enemiesInRange.Remove(other.gameObject.GetComponent<EnemyAttributes>());
-
-        print($"{other.gameObject} exited");
+        return enemyTracker.enemiesInRange.OrderBy(enemy => enemy.distance).Last();
     }
 }
