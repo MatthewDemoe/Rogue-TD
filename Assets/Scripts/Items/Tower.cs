@@ -10,6 +10,9 @@ public class Tower : HoldableItem
     [SerializeField]
     private float m_range = 3.0f;
 
+    [SerializeField]
+    private SphereCollider m_rangeCollider;
+
     public float range { get { return m_range; } }
 
     [SerializeField]
@@ -29,7 +32,7 @@ public class Tower : HoldableItem
 
     void Start()
     {
-        GetComponent<SphereCollider>().radius = range;
+        m_rangeCollider.radius = range;
     }
 
     protected override void FixedUpdate()
