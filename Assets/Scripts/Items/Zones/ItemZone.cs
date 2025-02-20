@@ -8,5 +8,10 @@ public abstract class ItemZone : MonoBehaviour
 
     public abstract Zone zone { get; }
 
-    public abstract bool TryPlacement(HoldableItem item);
+    public virtual bool TryPlacement(HoldableItem item)
+    {
+        item.transform.parent = null;
+
+        return true;
+    }
 }

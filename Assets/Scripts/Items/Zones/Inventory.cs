@@ -31,6 +31,8 @@ public class Inventory : ItemZone
         if (firstEmptySlot is null)
             return false;
 
+        base.TryPlacement(item);
+
         bool canBuyTower = false;
         if (item.currentZone == Zone.Shop)
         {
