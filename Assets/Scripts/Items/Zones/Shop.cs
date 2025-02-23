@@ -20,11 +20,6 @@ public class Shop : ItemZone
         GenerateTowers();
     }
 
-    public void DeselectTowers()
-    {
-        towerSlotParent.GetComponentsInChildren<TowerButton>().ToList().ForEach(button => button.SetDisplayingInfo(false));
-    }
-
     public void GenerateTowers()
     {
         GameObject towerPrefab = null;

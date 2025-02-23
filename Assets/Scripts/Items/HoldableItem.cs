@@ -36,7 +36,19 @@ public abstract class HoldableItem : MonoBehaviour
 
     private ItemSlot holdingSlot = null;
 
-    public ItemZone.Zone currentZone { get; set; } = ItemZone.Zone.Empty;
+    private ItemZone.Zone _currentZone = ItemZone.Zone.Empty;
+    public ItemZone.Zone currentZone 
+    {
+        get
+        {
+            return _currentZone;
+        }
+        set
+        {
+            _currentZone = value;
+            CheckActiveInNewState(GameStateTracker.Instance.currentState);
+        }
+    }
 
     public Vector3 lastPlacement = Vector3.zero;
 
@@ -45,6 +57,7 @@ public abstract class HoldableItem : MonoBehaviour
         if (name == string.Empty)
             name = GetType().Name;
 
+        CheckActiveInNewState(GameStateTracker.Instance.currentState);
         GameStateTracker.Instance.OnGameStateChange.AddListener(CheckActiveInNewState);
     }
 
@@ -125,8 +138,10 @@ public abstract class HoldableItem : MonoBehaviour
 
     public void AddToItemSlot(ItemSlot itemSlot)
     {
-        holdingSlot = itemSlot;
-        ReturnToHoldingSlot();
+        holdingSlot = itemSlot;      
+
+        if(gameObject.activeInHierarchy)
+            ReturnToHoldingSlot();
     }
 
     private void ReturnToProperLocation()
