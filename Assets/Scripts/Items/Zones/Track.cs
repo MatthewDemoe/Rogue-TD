@@ -1,5 +1,6 @@
 
 using Unity.VisualScripting;
+using UnityEngine;
 
 public class Track : ItemZone
 {
@@ -18,5 +19,16 @@ public class Track : ItemZone
         item.transform.parent = transform;
 
         return true;
+    }
+    protected override void CheckActiveInNewState(GameStateTracker.GameState newState)
+    {
+        base.CheckActiveInNewState(newState);
+
+        bool shouldBeActive = newState != GameStateTracker.GameState.Shop;
+
+        foreach (Collider collider in zoneColliders)
+        {
+            collider.enabled = shouldBeActive;
+        }
     }
 }

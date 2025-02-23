@@ -14,10 +14,11 @@ public class Inventory : ItemZone
 
     public override Zone zone => Zone.Inventory;
 
-    private void Start()
+    protected override void Start()
     {
-        itemSlots = towerSlotParent.GetComponentsInChildren<ItemSlot>().ToList();
+        base.Start();
 
+        itemSlots = towerSlotParent.GetComponentsInChildren<ItemSlot>().ToList();
 
         TryPlacement(Instantiate(towerPrefab, itemSlots[0].transform.position, Quaternion.identity).GetComponent<HoldableItem>());
     }

@@ -3,6 +3,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEditor.PackageManager;
 
 public class Shop : ItemZone
 {
@@ -13,9 +14,11 @@ public class Shop : ItemZone
 
     public override Zone zone => Zone.Shop;
 
-    void Start()
+    protected override void Start()
     {
-        towerSlots = towerSlotParent.GetComponentsInChildren<ItemSlot>().ToList(); ;
+        base.Start();
+
+        towerSlots = towerSlotParent.GetComponentsInChildren<ItemSlot>().ToList();
 
         GenerateTowers();
     }
@@ -70,5 +73,17 @@ public class Shop : ItemZone
     {
         PlayerProperties.Instance.AdjustMoney(item.sellValue);
         Destroy(item.gameObject);
+    }
+
+    protected override void CheckActiveInNewState(GameStateTracker.GameState newState)
+    {
+        base.CheckActiveInNewState(newState);
+
+        bool shouldBeActive = newState == GameStateTracker.GameState.Shop;
+
+        foreach (Collider collider in zoneColliders)
+        {
+            collider.enabled = shouldBeActive;
+        }
     }
 }
