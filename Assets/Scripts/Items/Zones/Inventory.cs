@@ -18,6 +18,7 @@ public class Inventory : ItemZone
     {
         itemSlots = towerSlotParent.GetComponentsInChildren<ItemSlot>().ToList();
 
+
         TryPlacement(Instantiate(towerPrefab, itemSlots[0].transform.position, Quaternion.identity).GetComponent<HoldableItem>());
     }
 
@@ -49,4 +50,6 @@ public class Inventory : ItemZone
 
         return true;
     }
+
+
 }

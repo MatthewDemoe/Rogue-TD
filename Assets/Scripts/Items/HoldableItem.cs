@@ -44,6 +44,8 @@ public abstract class HoldableItem : MonoBehaviour
     {
         if (name == string.Empty)
             name = GetType().Name;
+
+        GameStateTracker.Instance.OnGameStateChange.AddListener(CheckActiveInNewState);
     }
 
     protected virtual void FixedUpdate()
@@ -192,5 +194,14 @@ public abstract class HoldableItem : MonoBehaviour
         }
 
         isHoldable = true;
+    }
+
+    private void CheckActiveInNewState(GameStateTracker.GameState newState)
+    {
+        if (currentZone == ItemZone.Zone.Shop)
+            gameObject.SetActive(newState == GameStateTracker.GameState.Shop);
+
+        else if (currentZone == ItemZone.Zone.Track)
+            gameObject.SetActive(newState != GameStateTracker.GameState.Shop);
     }
 }
