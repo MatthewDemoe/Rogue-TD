@@ -18,12 +18,7 @@ public abstract class ItemZone : MonoBehaviour
         CheckActiveInNewState(GameStateTracker.Instance.currentState);
     }
 
-    public virtual bool TryPlacement(HoldableItem item)
-    {
-        item.transform.parent = null;
-
-        return true;
-    }
+    public abstract bool TryPlacement(HoldableItem item);
 
     protected virtual void CheckActiveInNewState(GameStateTracker.GameState newState)
     {

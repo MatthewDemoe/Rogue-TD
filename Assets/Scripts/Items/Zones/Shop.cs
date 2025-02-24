@@ -61,8 +61,6 @@ public class Shop : ItemZone
         if (item.currentZone == zone)
             return false;
 
-        base.TryPlacement(item);
-
         item.RemoveFromHoldingSlot();
         SellItem(item);
 

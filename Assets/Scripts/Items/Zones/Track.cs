@@ -9,7 +9,6 @@ public class Track : ItemZone
     public override bool TryPlacement(HoldableItem item)
     {
         //TODO: if item type is treasure return false
-        base.TryPlacement(item);
 
         if (item.currentZone != zone)
             item.RemoveFromHoldingSlot();

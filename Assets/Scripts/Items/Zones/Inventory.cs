@@ -33,8 +33,6 @@ public class Inventory : ItemZone
         if (firstEmptySlot is null)
             return false;
 
-        base.TryPlacement(item);
-
         bool canBuyTower = false;
         if (item.currentZone == Zone.Shop)
         {
@@ -48,6 +46,7 @@ public class Inventory : ItemZone
 
         firstEmptySlot.AddItem(item);
         item.currentZone = zone;
+        item.transform.parent = transform;
 
         return true;
     }
