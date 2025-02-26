@@ -29,8 +29,13 @@ public class Tower : HoldableItem
 
     TowerEnemyTracker enemyTracker = null;
 
+    [SerializeField]
+    Texture2D towerSprite;
+
     void Start()
     {
+        GetComponentInChildren<MeshRenderer>().material.mainTexture = towerSprite;
+
         m_rangeCollider.radius = range;
         enemyTracker = GetComponentInChildren<TowerEnemyTracker>();
     }
