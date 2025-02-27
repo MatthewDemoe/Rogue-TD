@@ -5,7 +5,6 @@ using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerActions : MonoBehaviour
 {
@@ -43,11 +42,6 @@ public class PlayerActions : MonoBehaviour
         else
             LMBUp();
         
-        /*
-        if (PlayerProperties.Instance.isHoldingTower && hitPlayArea)
-            TryPlaceTower();
-        */ 
-
         List<RaycastResult> results = new();
 
         eventData = new PointerEventData(eventSystem);

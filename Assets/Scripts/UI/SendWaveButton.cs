@@ -11,8 +11,7 @@ public class SendWaveButton : MonoBehaviour
 
     void UpdateButtonState(GameStateTracker.GameState newState)
     {
-        if (newState != GameStateTracker.GameState.Track)
-            gameObject.SetActive(false);
+        CheckState();
     }
 
     public void CheckState()

@@ -25,7 +25,7 @@ public class PlayerProperties
                 oneTime: false
             ));
 
-        Level.Instance.OnWaveCompleted.AddListener(() => 
+        LevelProperties.OnWaveComplete.AddListener(() => 
         {
             foreach (IncomeSource source in incomeSources.incomeSources)
             {

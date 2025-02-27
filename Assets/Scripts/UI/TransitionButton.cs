@@ -25,13 +25,20 @@ public class TransitionButton : MonoBehaviour
 
     public void CheckState()
     {
+        if (gameObject.activeInHierarchy)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         gameObject.SetActive(GameStateTracker.Instance.currentState != GameStateTracker.GameState.Level);
     }
 
     void UpdateButtonState(GameStateTracker.GameState newState)
     {
         buttonText.text = newState == GameStateTracker.GameState.Shop ? "Track" : "Shop";
-        gameObject.SetActive(false);
+        
+        CheckState();
     }
 
     private void OnDestroy()

@@ -23,28 +23,23 @@ public class EnemyLookup
         }
     }
 
-    private List<string> easyEnemyTags = new List<string>() { AddressableLabels.enemy, AddressableLabels.easy };
-    private List<string> mediumEnemyTags = new List<string>() { AddressableLabels.enemy, AddressableLabels.medium };
-    private List<string> hardEnemyTags = new List<string>() { AddressableLabels.enemy, AddressableLabels.hard };
 
-    public List<GameObject> easyEnemies { get; private set; } = new();
-    public List<GameObject> mediumEnemies { get; private set; } = new();
-    public List<GameObject> hardEnemies { get; private set; } = new();
+    public List<EnemyAttributes> enemies { get; private set; } = new();
 
     public EnemyLookup()
     {
-        GetEnemies(easyEnemyTags, easyEnemies);
-        GetEnemies(mediumEnemyTags, mediumEnemies);
-        GetEnemies(hardEnemyTags, hardEnemies);
+        GetEnemies(new List<string>() { AddressableLabels.enemy }, enemies);
     }
 
-    private void GetEnemies(List<string> tags, List<GameObject> enemyList)
+    private void GetEnemies(List<string> tags, List<EnemyAttributes> enemyList)
     {
         AsyncOperationHandle<IList<GameObject>> loadHandle = Addressables.LoadAssetsAsync<GameObject>(
             tags,
             addressable =>
             {
-                enemyList.Add(addressable);
+                EnemyAttributes enemyAttributes = addressable.GetComponent<EnemyAttributes>();
+
+                enemyList.Add(enemyAttributes);
             }, Addressables.MergeMode.Intersection,
             false);
 

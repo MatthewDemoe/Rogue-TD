@@ -5,72 +5,43 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Splines;
 
-public class Level : MonoBehaviour
+public class LevelProperties : MonoBehaviour
 {
-    public static Level Instance { get; private set; }
-
-    public int numWaves { get; private set; } = 10;
+    public int numWaves { get; private set; } = 15;
     public int currentWaveNum { get; private set; } = 0;
-
-    public List<Wave> waves { get; private set; } = new();
 
     List<GameObject> aliveEnemies = new();
 
     [SerializeField]
     SplineContainer trackSpline;
 
-    [SerializeField]
-    private UnityEvent OnWaveStart = new();
+    WaveGenerator waveGenerator = null;
 
-    public UnityEvent OnWaveStarted { get { return OnWaveStart; } }
+    public static UnityEvent OnWaveStart { get; } = new();
 
-    [SerializeField]
-    private UnityEvent OnWaveComplete = new();
-
-    public UnityEvent OnWaveCompleted { get { return OnWaveComplete; } }
-
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Debug.LogWarning($"Trying to implement more than one {this}");
-            Destroy(this);
-        }
-
-        Instance = this;
-    }
+    public static UnityEvent OnWaveComplete { get; } = new();
 
     private void Start()
     {
-        /*
-        PlayerProperties.Instance.incomeSources.AddIncomeSource(new IncomeSource
-            (
-                sourceName: "Wave Income",
-                amount: () => { return currentWaveNum % 3 > 0 ? 3 : 5; }
-            ));
-        */
-        GenerateWaves();
+        waveGenerator = new WaveGenerator(numWaves);
+
+        OnWaveComplete.AddListener(() => currentWaveNum++);
+        OnWaveComplete.AddListener(() => GameStateTracker.Instance.TrySetGameState(GameStateTracker.GameState.Track));
     }
 
     public void StartWave()
     {
-        currentWaveNum++;
-        Wave currentWave = waves[currentWaveNum];
+        bool waveStarted = GameStateTracker.Instance.TrySetGameState(GameStateTracker.GameState.Level);
+
+        if(!waveStarted)
+            return;
+
+        Wave currentWave = waveGenerator.waves[currentWaveNum];
         ParseWave(currentWave);
+
         currentWave.Start();
         OnWaveStart.Invoke();
     }
-
-    private void GenerateWaves()
-    {
-        for (int i = 0; i < numWaves; i++)
-        {
-            Wave wave = new Wave( new List<WaveAttributes>() { new WaveAttributes(EnemyLookup.Instance.hardEnemies[0], i) }, (i % 3 > 0 ? 3 : 5));
-            //wave.waveAttributes.Add();
-            waves.Add(wave);
-        }
-    }
-
     private void CreateEnemy(GameObject enemyToSpawn)
     {
         GameObject enemyInstance = Instantiate(enemyToSpawn);
@@ -96,13 +67,10 @@ public class Level : MonoBehaviour
         wave.waveAttributes.ForEach(waveAttribute => StartCoroutine(ParseWaveAttributes(waveAttribute)));
     }
 
-    IEnumerator ParseWaveAttributes(WaveAttributes waveAttributes)
+    IEnumerator ParseWaveAttributes(WaveEnemyAttributes waveAttributes)
     {
-        Debug.Log("Parsing Wave");
-
         yield return new WaitForSeconds(waveAttributes.spawnDelay);
         EnemyAttributes enemyAttributes = waveAttributes.waveEnemy.GetComponent<EnemyAttributes>();
-        Debug.Log($"Creating {enemyAttributes.displayName}");
 
         int totalEnemies = (int)(waveAttributes.enemyAmount * enemyAttributes.spawnAmountMultiplier);
 

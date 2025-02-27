@@ -13,6 +13,21 @@ public class EnemyAttributes : MonoBehaviour
     public string displayName {get {return m_displayName;}}
 
     [SerializeField]
+    private int m_minWave = 0;
+
+    public int minWave { get { return m_minWave; } }
+
+    [SerializeField]
+    private int m_maxWave = 3;
+
+    public int maxWave { get { return m_maxWave; } }
+
+    [SerializeField]
+    private int m_difficultyRating = 1;
+
+    public int difficultyRating { get { return m_difficultyRating; } }
+
+    [SerializeField]
     float baseSpeed = 1.0f;
     float speedMultiplier = 1.0f;
     public float currentSpeed => baseSpeed * speedMultiplier;

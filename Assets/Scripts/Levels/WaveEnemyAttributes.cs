@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public struct WaveAttributes 
+public struct WaveEnemyAttributes 
 {
-    public WaveAttributes(GameObject waveEnemy, int enemyAmount, float spawnDelay = 0)
+    public WaveEnemyAttributes(GameObject waveEnemy, int enemyAmount, float spawnDelay = 0)
     {
         this.waveEnemy = waveEnemy;
         this.enemyAmount = enemyAmount;

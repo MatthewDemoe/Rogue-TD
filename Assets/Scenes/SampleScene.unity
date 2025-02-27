@@ -356,7 +356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 88528263}
-  - component: {fileID: 88528261}
+  - component: {fileID: 88528264}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -364,73 +364,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &88528261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 88528260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d441f0c84aca89044b3dc45771672c5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trackSpline: {fileID: 1817761438}
-  OnWaveStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: ClearTowerButtons
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnWaveComplete:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1155222568}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: GenerateTowerButtons
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!4 &88528263
 Transform:
   m_ObjectHideFlags: 0
@@ -446,6 +379,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &88528264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88528260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d441f0c84aca89044b3dc45771672c5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackSpline: {fileID: 1102841207}
 --- !u!1 &328322652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,6 +1241,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1090122053}
   m_CullTransparentMesh: 1
+--- !u!114 &1102841207 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1271791018805298253, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+  m_PrefabInstance: {fileID: 2391829702868720384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1155222568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,32 +1336,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1155222568}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 88528261}
-        m_TargetAssemblyTypeName: Level, Assembly-CSharp
+      - m_Target: {fileID: 88528264}
+        m_TargetAssemblyTypeName: LevelProperties, Assembly-CSharp
         m_MethodName: StartWave
         m_Mode: 1
         m_Arguments:
@@ -1879,17 +1812,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livesText: {fileID: 1681624473}
   moneyText: {fileID: 1363179673}
---- !u!114 &1817761438 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1271791018805298253, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
-  m_PrefabInstance: {fileID: 2391829702868720384}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1993635523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,6 +1896,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 220217338876227182, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1998296934612062922, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
       propertyPath: m_Name
       value: Track
@@ -2058,6 +1984,10 @@ PrefabInstance:
       propertyPath: position.x
       value: 2.75
       objectReference: {fileID: 0}
+    - target: {fileID: 4907077766381329031, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6176119157904262603, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2096,6 +2026,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6176119157904262603, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6185367281511408216, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+      propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

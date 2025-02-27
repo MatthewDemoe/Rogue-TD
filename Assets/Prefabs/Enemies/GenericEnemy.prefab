@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3f611219ddefbb04fa35423190c95bdd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,10 +174,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_displayName: Generic
+  m_minWave: 1
+  m_maxWave: 15
+  m_difficultyRating: 2
   baseSpeed: 1
   baseHealth: 1
-  spawnAmountMultiplier: 1
-  spawnSpeedMultiplier: 1
+  m_spawnAmountMultiplier: 1
+  m_spawnInterval: 1
   splineAnimate: {fileID: 7867011637124073699}
 --- !u!114 &4998061197377345004
 MonoBehaviour:

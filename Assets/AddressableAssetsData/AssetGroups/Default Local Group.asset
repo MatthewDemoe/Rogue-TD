@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: c2850f99e6c2e7f4980c8b12a4023019
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: e4c9cb4f68beaf64585e0a493e467a5f
+    m_Address: Assets/Materials/BasicTower.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9f90fde74e4f30340a0f0f7c214353c1, type: 2}
   m_SchemaSet:
