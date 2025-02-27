@@ -3,8 +3,6 @@ using UnityEngine.Splines;
 using Unity.Mathematics;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Splines;
-using UnityEngine.UIElements;
 
 [RequireComponent (typeof(SplineContainer))]
 public class TrackCreator : MonoBehaviour
@@ -12,11 +10,12 @@ public class TrackCreator : MonoBehaviour
     [SerializeField]
     int numPoints;
 
-    const float LARGE_NUMBER = 1000.0f;
     const float POISSON_RANGE = 50.0f;
     const int POISSON_RETRIES = 30;
     const float POISSON_PERCENTAGE = 0.85f;
 
+    [SerializeField]
+    MeshCollider trackCollider;
     Bounds trackBounds;
 
     float3 startPoint = Vector3.zero;
@@ -38,8 +37,8 @@ public class TrackCreator : MonoBehaviour
     {
         splineContainer = GetComponent<SplineContainer>();
 
-        trackBounds = trackPlane.GetComponent<MeshCollider>().bounds;
-        
+        trackBounds = trackCollider.bounds;
+
         AddPoints();
 
         if(TryGetComponent(out SplineInstantiate splineInstantiate))
@@ -123,25 +122,17 @@ public class TrackCreator : MonoBehaviour
 
     private float3 CreatePointOnEdge()
     {
-        RaycastHit hit;
-
-        float3 point = CreatePointInBounds();
-        point = ((Vector3)point).normalized;
-        point *= LARGE_NUMBER;
-
-        Physics.Raycast(point, -point, out hit, math.INFINITY, LayerMask.GetMask("Track"));
-
-        float3 returnVal = new float3(hit.point.x, hit.point.z, hit.point.y);
-
-        return returnVal;
-    }
-
-    float3 CreatePointInBounds()
-    {
         float positionX = UnityEngine.Random.Range(trackBounds.min.x, trackBounds.max.x);
         float positionZ = UnityEngine.Random.Range(trackBounds.min.z, trackBounds.max.z);
 
-        return new float3(positionX, 0.0f, positionZ); 
+        Vector3 point = new Vector3(positionX, 0.0f, positionZ);
+
+        Vector3 direction = point / point.magnitude;
+
+        Vector3 outOfBounds = trackBounds.center + (direction * trackBounds.size.magnitude);
+        Vector3 closestPoint = trackBounds.ClosestPoint(outOfBounds);
+
+        return new float3(closestPoint.x, closestPoint.z, 0.0f);
     }
 
     Vector2 CreateVectorInBounds()
@@ -206,7 +197,6 @@ public class TrackCreator : MonoBehaviour
         Vector2[,] grid = new Vector2[numWidthCells, numHeightCells];
 
         InsertPoint(grid, cellSize, p0);
-        finalPoints.Add(p0);
         tempPoints.Add(p0);
 
         while (tempPoints.Count > 0)

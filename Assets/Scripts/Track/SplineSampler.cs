@@ -16,8 +16,6 @@ public class SplineSampler : MonoBehaviour
     [SerializeField]
     float splineResolution = 100.0f;
 
-    const float MAX_EXTENTS_THRESHOLD = 0.1f;
-
     float3 position;
     float3 forward;
     float3 upVector;
@@ -38,12 +36,7 @@ public class SplineSampler : MonoBehaviour
 
     void Start()
     {
-        bool meshIsFunctional = TryBuildMesh();
-
-        while (!meshIsFunctional)
-        {
-            meshIsFunctional = TryBuildMesh();
-        }
+        BuildMesh();
 
         if (TryGetComponent(out MeshCollider meshCollider))
             meshCollider.sharedMesh = m_meshFilter.sharedMesh;
@@ -72,7 +65,7 @@ public class SplineSampler : MonoBehaviour
         }
     }
 
-    private bool TryBuildMesh()
+    private void BuildMesh()
     {
         print($"Building Mesh");
         Mesh trackMesh = new();
@@ -127,7 +120,5 @@ public class SplineSampler : MonoBehaviour
 
         m_meshFilter.mesh = trackMesh;        
         m_directionMeshFilter.mesh = directionMesh;
-
-        return !(trackMesh.bounds.extents.y > MAX_EXTENTS_THRESHOLD);
     }
 }
