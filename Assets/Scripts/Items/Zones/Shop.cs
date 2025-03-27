@@ -25,27 +25,16 @@ public class Shop : ItemZone
 
     public void GenerateTowers()
     {
-        GameObject towerPrefab = null;
-        AsyncOperationHandle<IList<GameObject>> loadHandle = Addressables.LoadAssetsAsync<GameObject>(
-            new List<string>() { "tower" },
-            addressable =>
-            {
-                towerPrefab = addressable;
-            }, Addressables.MergeMode.Intersection,
-            false);
-
-        loadHandle.WaitForCompletion();
+        List<GameObject> towers = TowerLookup.Instance.towers;
 
         for (int i = 0; i < towerSlots.Count; i++)
         {
-            GameObject towerInstance = Instantiate(towerPrefab, towerSlots[i].transform.position, Quaternion.identity);
+            GameObject towerInstance = Instantiate(towers[Random.Range(0, towers.Count)], towerSlots[i].transform.position, Quaternion.identity);
             Tower tower = towerInstance.GetComponent<Tower>();
             tower.currentZone = zone;
 
             towerSlots[i].AddItem(tower);
         }
-
-        Addressables.Release(loadHandle);
     }
 
     public void ClearShopTowers()

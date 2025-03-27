@@ -23,6 +23,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - tower
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b5ccda41b70f4ea418d4537d00088389
+    m_Address: GoblinArsonist
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - tower
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e7315cb79f4460c45882828f3bec0356
+    m_Address: GoblinSharpshooter
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - tower
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9f90fde74e4f30340a0f0f7c214353c1, type: 2}
   m_SchemaSet:

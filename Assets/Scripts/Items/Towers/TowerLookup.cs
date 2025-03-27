@@ -1,18 +1,18 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using Lookups;
 
-public class EnemyLookup 
+public class TowerLookup
 {
-    private static EnemyLookup m_instance = null;
-    public static EnemyLookup Instance 
+    private static TowerLookup m_instance = null;
+    public static TowerLookup Instance
     {
         get
         {
-            if(m_instance == null)
-                m_instance = new EnemyLookup();
+            if (m_instance == null)
+                m_instance = new TowerLookup();
 
             return m_instance;
         }
@@ -23,23 +23,20 @@ public class EnemyLookup
         }
     }
 
+    public List<GameObject> towers { get; private set; } = new();
 
-    public List<EnemyAttributes> enemies { get; private set; } = new();
-
-    public EnemyLookup()
+    private TowerLookup()
     {
-        GetEnemies(new List<string>() { AddressableLabels.enemy });
+        GetTowers(new List<string>() { "tower" });
     }
 
-    private void GetEnemies(List<string> tags)
+    private void GetTowers(List<string> tags)
     {
         AsyncOperationHandle<IList<GameObject>> loadHandle = Addressables.LoadAssetsAsync<GameObject>(
             tags,
             addressable =>
             {
-                EnemyAttributes enemyAttributes = addressable.GetComponent<EnemyAttributes>();
-
-                enemies.Add(enemyAttributes);
+                towers.Add(addressable);
             }, Addressables.MergeMode.Intersection,
             false);
 
