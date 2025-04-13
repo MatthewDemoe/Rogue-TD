@@ -26,7 +26,7 @@ public class Projectile : DamageSource
         }
 
         m_direction = (m_target.transform.position - transform.position).normalized;
-        rb.velocity = m_direction * speed;
+        rb.linearVelocity = m_direction * speed;
     }
 
     public override void Initialize(Tower sourceTower)

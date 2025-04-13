@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 53
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e07c9b2c97f84356bb2bfac29363e611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StyleTrainerData:
+    rid: 877940530225348689
+  m_DefaultStyleData:
+    rid: 877940530225348690
+  m_DefaultStyleVersion: 0
+  m_DefaultStyles: []
+  m_AssetPath: 
+  m_PreviousProjectIDs: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 877940530225348689
+      type: {class: StyleTrainerData, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+        m_State: 1
+        m_Disposing: 0
+        m_Styles:
+        - rid: 877940530225348691
+        m_Version: 202231001
+    - rid: 877940530225348690
+      type: {class: StyleTrainerData, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 84ea6b26-7c60-46cb-86da-20c82d9b8c63
+        m_State: 3
+        m_Disposing: 0
+        m_Styles: []
+        m_Version: 202231001
+    - rid: 877940530225348691
+      type: {class: StyleData, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 
+        m_State: 3
+        m_Disposing: 0
+        m_IsFallback: 0
+        m_Thumbnail:
+          rid: 877940530225348692
+        m_Visible: 1
+        selectedCheckPointGUID: 00000000-0000-0000-0000-000000000000
+        m_FavoriteCheckPointGUID: 00000000-0000-0000-0000-000000000000
+        parentID: 00000000-0000-0000-0000-000000000000
+        m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+        m_TrainingSteps: 2000
+        m_CheckPoints: []
+        m_SampleOutputPrompts:
+        - 
+        - 
+        - 
+        m_TrainingSetData:
+        - m_Guid: 00000000-0000-0000-0000-000000000000
+          m_State: 3
+          m_Disposing: 0
+          m_TrainingSet: []
+          m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+        m_Name: New Style
+        m_Description: 
+    - rid: 877940530225348692
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 00000000-0000-0000-0000-000000000000
+        m_State: 3
+        m_Disposing: 0
