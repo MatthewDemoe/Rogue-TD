@@ -16,13 +16,16 @@ MonoBehaviour:
     rid: 877940530225348689
   m_DefaultStyleData:
     rid: 877940530225348690
-  m_DefaultStyleVersion: 0
-  m_DefaultStyles: []
+  m_DefaultStyleVersion: 2023111600
+  m_DefaultStyles:
+  - rid: 877940539070873749
   m_AssetPath: 
   m_PreviousProjectIDs: []
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 877940530225348689
       type: {class: StyleTrainerData, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
       data:
@@ -35,42 +38,730 @@ MonoBehaviour:
     - rid: 877940530225348690
       type: {class: StyleTrainerData, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
       data:
-        m_Guid: 84ea6b26-7c60-46cb-86da-20c82d9b8c63
-        m_State: 3
+        m_Guid: 11000000-0000-0000-0000-000000000011
+        m_State: 1
         m_Disposing: 0
-        m_Styles: []
+        m_Styles:
+        - rid: 877940539070873750
         m_Version: 202231001
     - rid: 877940530225348691
       type: {class: StyleData, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
       data:
-        m_Guid: 
-        m_State: 3
+        m_Guid: e05ba00a-f5ca-4e90-abf3-63a6d6c3bb6b
+        m_State: 1
         m_Disposing: 0
         m_IsFallback: 0
         m_Thumbnail:
           rid: 877940530225348692
         m_Visible: 1
-        selectedCheckPointGUID: 00000000-0000-0000-0000-000000000000
-        m_FavoriteCheckPointGUID: 00000000-0000-0000-0000-000000000000
+        selectedCheckPointGUID: bb875cc0-4bce-4078-9d0f-770b18c8b982
+        m_FavoriteCheckPointGUID: 89a05d45-05dc-4d53-98cd-b0fa7248391c
         parentID: 00000000-0000-0000-0000-000000000000
         m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
         m_TrainingSteps: 2000
-        m_CheckPoints: []
-        m_SampleOutputPrompts:
-        - 
-        - 
-        - 
-        m_TrainingSetData:
-        - m_Guid: 00000000-0000-0000-0000-000000000000
-          m_State: 3
+        m_CheckPoints:
+        - m_Guid: edaa4303-0dbb-4708-9080-3ca54dea3b9d
+          m_State: 1
           m_Disposing: 0
-          m_TrainingSet: []
           m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
-        m_Name: New Style
-        m_Description: 
+          m_Name: Mak
+          m_Description: Potions and such
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: 344ce247-e26b-4762-92b6-471b601b2959
+            m_State: 5
+            m_Disposing: 0
+            m_TrainingSet: []
+            m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_ValidationImagesData:
+          - m_Guid: 8b45e8ff-6876-4e4f-8de9-e1719b1beeb5
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 8b45e8ff-6876-4e4f-8de9-e1719b1beeb5
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: goblin about to throw a molotov coctail
+          - m_Guid: 0843c353-bed0-46ad-b3cf-dbe20af4aa47
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 0843c353-bed0-46ad-b3cf-dbe20af4aa47
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: magic fluid flowing into an empty bottle
+          - m_Guid: 9c5889b0-5e80-4696-9952-38ec575c4cb4
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 9c5889b0-5e80-4696-9952-38ec575c4cb4
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: an ancient runic mask
+          m_FavoriteSampleOutputDataGuid: 8b45e8ff-6876-4e4f-8de9-e1719b1beeb5
+          m_TrainingSteps: 200
+        - m_Guid: 99546494-f810-476e-84fa-1b61326464b3
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_Name: Mak
+          m_Description: Potions and such
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: 344ce247-e26b-4762-92b6-471b601b2959
+            m_State: 5
+            m_Disposing: 0
+            m_TrainingSet: []
+            m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_ValidationImagesData:
+          - m_Guid: bd7486e0-8a22-43ba-a7de-39fd42654a80
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: bd7486e0-8a22-43ba-a7de-39fd42654a80
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: goblin about to throw a molotov coctail
+          - m_Guid: 2caaf8ae-3aed-454b-8d00-5bc943a39ab9
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 2caaf8ae-3aed-454b-8d00-5bc943a39ab9
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: magic fluid flowing into an empty bottle
+          - m_Guid: 151b1104-3cc8-42ee-aa56-0559869e1af2
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 151b1104-3cc8-42ee-aa56-0559869e1af2
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: an ancient runic mask
+          m_FavoriteSampleOutputDataGuid: bd7486e0-8a22-43ba-a7de-39fd42654a80
+          m_TrainingSteps: 400
+        - m_Guid: 89a05d45-05dc-4d53-98cd-b0fa7248391c
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_Name: Mak
+          m_Description: Potions and such
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: 344ce247-e26b-4762-92b6-471b601b2959
+            m_State: 5
+            m_Disposing: 0
+            m_TrainingSet: []
+            m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_ValidationImagesData:
+          - m_Guid: 51185aac-1d1a-42fe-967b-06709f9cb5ed
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 51185aac-1d1a-42fe-967b-06709f9cb5ed
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: goblin about to throw a molotov coctail
+          - m_Guid: 27a3d5d1-b3aa-4f28-928e-3452c6b86685
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 27a3d5d1-b3aa-4f28-928e-3452c6b86685
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: magic fluid flowing into an empty bottle
+          - m_Guid: 5be41555-faaa-4823-812a-6b2029a5471a
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 5be41555-faaa-4823-812a-6b2029a5471a
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: an ancient runic mask
+          m_FavoriteSampleOutputDataGuid: 51185aac-1d1a-42fe-967b-06709f9cb5ed
+          m_TrainingSteps: 600
+        - m_Guid: 4834fb39-4b20-4ad7-a12d-71db608584ab
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_Name: Mak
+          m_Description: Potions and such
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: 344ce247-e26b-4762-92b6-471b601b2959
+            m_State: 5
+            m_Disposing: 0
+            m_TrainingSet: []
+            m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_ValidationImagesData:
+          - m_Guid: 410beb7d-c9ab-4e07-8732-6eb497d9c1ef
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 410beb7d-c9ab-4e07-8732-6eb497d9c1ef
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: goblin about to throw a molotov coctail
+          - m_Guid: 219a7488-045d-4fac-9976-2169f036feef
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 219a7488-045d-4fac-9976-2169f036feef
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: magic fluid flowing into an empty bottle
+          - m_Guid: ca22ecef-b5e3-413f-8f14-a067175b0b84
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: ca22ecef-b5e3-413f-8f14-a067175b0b84
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: an ancient runic mask
+          m_FavoriteSampleOutputDataGuid: 
+          m_TrainingSteps: 800
+        - m_Guid: 3f1cc7c7-fb33-4d39-87b5-068bbf4d79ee
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_Name: Mak
+          m_Description: Potions and such
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: 344ce247-e26b-4762-92b6-471b601b2959
+            m_State: 5
+            m_Disposing: 0
+            m_TrainingSet: []
+            m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_ValidationImagesData:
+          - m_Guid: 83265444-1f3b-448e-bf85-2803ee2a1ed9
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 83265444-1f3b-448e-bf85-2803ee2a1ed9
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: goblin about to throw a molotov coctail
+          - m_Guid: 1dfa8437-65ff-43d2-9f23-35ae1968f47d
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 1dfa8437-65ff-43d2-9f23-35ae1968f47d
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: magic fluid flowing into an empty bottle
+          - m_Guid: 5052d9a3-f3ad-4fbb-b7b1-debc72c9d8e6
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 5052d9a3-f3ad-4fbb-b7b1-debc72c9d8e6
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: an ancient runic mask
+          m_FavoriteSampleOutputDataGuid: 
+          m_TrainingSteps: 1000
+        - m_Guid: 923da1d5-a20c-4c41-9002-6c7298eff08b
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_Name: Mak
+          m_Description: Potions and such
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: 344ce247-e26b-4762-92b6-471b601b2959
+            m_State: 5
+            m_Disposing: 0
+            m_TrainingSet: []
+            m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_ValidationImagesData:
+          - m_Guid: ec92915b-14af-40ad-a525-d894b99732f6
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: ec92915b-14af-40ad-a525-d894b99732f6
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: goblin about to throw a molotov coctail
+          - m_Guid: b0525aec-f78a-4044-beeb-a59db39d64a9
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: b0525aec-f78a-4044-beeb-a59db39d64a9
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: magic fluid flowing into an empty bottle
+          - m_Guid: bee169dd-3171-4b3b-8cf0-b45e12873268
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: bee169dd-3171-4b3b-8cf0-b45e12873268
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: an ancient runic mask
+          m_FavoriteSampleOutputDataGuid: 
+          m_TrainingSteps: 1200
+        - m_Guid: 33c65d1b-3e6a-4f23-8d38-31b678904477
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_Name: Mak
+          m_Description: Potions and such
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: 344ce247-e26b-4762-92b6-471b601b2959
+            m_State: 5
+            m_Disposing: 0
+            m_TrainingSet: []
+            m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_ValidationImagesData:
+          - m_Guid: 6bbe6827-a508-4a3a-8edf-32bb68932b35
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 6bbe6827-a508-4a3a-8edf-32bb68932b35
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: goblin about to throw a molotov coctail
+          - m_Guid: fe39c824-fea1-497f-9325-001ae8cb6036
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: fe39c824-fea1-497f-9325-001ae8cb6036
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: magic fluid flowing into an empty bottle
+          - m_Guid: 3715b408-fa8a-49ef-8fea-8371bfa12cfd
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 3715b408-fa8a-49ef-8fea-8371bfa12cfd
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: an ancient runic mask
+          m_FavoriteSampleOutputDataGuid: 
+          m_TrainingSteps: 1400
+        - m_Guid: 7a5da809-fdb2-46db-a90b-0a2b4e2c3c8e
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_Name: Mak
+          m_Description: Potions and such
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: 344ce247-e26b-4762-92b6-471b601b2959
+            m_State: 5
+            m_Disposing: 0
+            m_TrainingSet: []
+            m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_ValidationImagesData:
+          - m_Guid: 5da97fb7-b1fd-478a-9c34-c322d454bf4a
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 5da97fb7-b1fd-478a-9c34-c322d454bf4a
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: goblin about to throw a molotov coctail
+          - m_Guid: c1e106b3-1522-4058-b49f-bb4c0f86364c
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: c1e106b3-1522-4058-b49f-bb4c0f86364c
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: magic fluid flowing into an empty bottle
+          - m_Guid: acbb2cd6-1b46-484e-866d-9a53a1ae1bcf
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: acbb2cd6-1b46-484e-866d-9a53a1ae1bcf
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: an ancient runic mask
+          m_FavoriteSampleOutputDataGuid: 
+          m_TrainingSteps: 1600
+        - m_Guid: 9135d7ef-634e-45b9-b55a-299e00713c5b
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_Name: Mak
+          m_Description: Potions and such
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: 344ce247-e26b-4762-92b6-471b601b2959
+            m_State: 5
+            m_Disposing: 0
+            m_TrainingSet: []
+            m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_ValidationImagesData:
+          - m_Guid: 44e11501-58d2-4ddf-b2aa-76b05a451619
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 44e11501-58d2-4ddf-b2aa-76b05a451619
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: goblin about to throw a molotov coctail
+          - m_Guid: da1c270a-bb82-4028-b829-6f4852668fee
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: da1c270a-bb82-4028-b829-6f4852668fee
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: magic fluid flowing into an empty bottle
+          - m_Guid: 29e82169-ece1-4964-8eab-0f372ae7ebf2
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 29e82169-ece1-4964-8eab-0f372ae7ebf2
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: an ancient runic mask
+          m_FavoriteSampleOutputDataGuid: 
+          m_TrainingSteps: 1800
+        - m_Guid: bb875cc0-4bce-4078-9d0f-770b18c8b982
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_Name: Mak
+          m_Description: Potions and such
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: 344ce247-e26b-4762-92b6-471b601b2959
+            m_State: 5
+            m_Disposing: 0
+            m_TrainingSet: []
+            m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+          m_ValidationImagesData:
+          - m_Guid: 9cb1ea9b-91a3-42fd-8caf-476d09dc28c1
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 9cb1ea9b-91a3-42fd-8caf-476d09dc28c1
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: goblin about to throw a molotov coctail
+          - m_Guid: 26d40f30-fec9-483f-9083-21a788004a4b
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 26d40f30-fec9-483f-9083-21a788004a4b
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: magic fluid flowing into an empty bottle
+          - m_Guid: 3656f1dc-dd94-493e-a198-7de4467f378e
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 3656f1dc-dd94-493e-a198-7de4467f378e
+              m_State: 1
+              m_Disposing: 0
+            m_Prompt: an ancient runic mask
+          m_FavoriteSampleOutputDataGuid: 9cb1ea9b-91a3-42fd-8caf-476d09dc28c1
+          m_TrainingSteps: 2000
+        m_SampleOutputPrompts:
+        - Goblin about to throw a molotov coctail
+        - Magic fluid flowing into an empty bottle
+        - 'An ancient runic mask '
+        m_TrainingSetData:
+        - m_Guid: 344ce247-e26b-4762-92b6-471b601b2959
+          m_State: 1
+          m_Disposing: 0
+          m_TrainingSet:
+          - m_Guid: 741f865e-6083-4055-b3ed-09e6abf063b9
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873751
+          - m_Guid: b8856d83-8a4a-4338-be4c-f4877dbacc5a
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873752
+          - m_Guid: 312d0d4d-9f8a-4f13-a64d-0d109f2c94c6
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873753
+          - m_Guid: 5a091ffc-73b6-4227-8e12-24d8d6063146
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873754
+          - m_Guid: c9a6ca7f-f619-4f88-868d-cb5b9a20df3a
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873755
+          - m_Guid: e0bc4639-42cb-4136-9e45-6be2a555fe34
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873756
+          - m_Guid: b0b9442f-462e-431c-9834-4c6b60f89e48
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873757
+          - m_Guid: 67f9ec04-aa90-423e-8a44-e38ecf76940b
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873758
+          - m_Guid: b1bba91f-2a29-4177-b461-6a96375a7598
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873759
+          - m_Guid: 648fc8c8-6ffe-47ae-a604-a8700700dfd6
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873760
+          - m_Guid: 849fd6a3-e46f-445e-b1f4-ded25bec8f16
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873761
+          - m_Guid: fc3cd731-a43d-44db-9f46-a4da8f53394d
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873762
+          - m_Guid: 95c96c88-347c-4347-9bc5-7e73bb06fdb3
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873763
+          - m_Guid: def2aacd-32fd-4a02-ad97-a223d9221822
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873764
+          - m_Guid: ce4beb14-0582-491a-9f29-9abaa3a20307
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              rid: 877940539070873765
+          m_ProjectID: ea4695fd-c986-477d-a4a4-18e0ee77e15c
+        m_Name: Mak
+        m_Description: Potions and such
     - rid: 877940530225348692
       type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
       data:
         m_Guid: 00000000-0000-0000-0000-000000000000
         m_State: 3
+        m_Disposing: 0
+    - rid: 877940539070873749
+      type: {class: StyleData, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 00000000-0000-0000-0000-000000000000
+        m_State: 1
+        m_Disposing: 0
+        m_IsFallback: 1
+        m_Thumbnail:
+          rid: -2
+        m_Visible: 0
+        selectedCheckPointGUID: 00000000-0000-0000-0000-000000000000
+        m_FavoriteCheckPointGUID: active
+        parentID: 00000000-0000-0000-0000-000000000000
+        m_ProjectID: 00000000-0000-0000-0000-000000000000
+        m_TrainingSteps: 2000
+        m_CheckPoints:
+        - m_Guid: 00000000-0000-0000-0000-000000000000
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: 00000000-0000-0000-0000-000000000000
+          m_Name: Default
+          m_Description: Default style.
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: 
+            m_State: 0
+            m_Disposing: 0
+            m_TrainingSet: []
+            m_ProjectID: 
+          m_ValidationImagesData: []
+          m_FavoriteSampleOutputDataGuid: 
+          m_TrainingSteps: 2000
+        m_SampleOutputPrompts: []
+        m_TrainingSetData: []
+        m_Name: Default
+        m_Description: Default style.
+    - rid: 877940539070873750
+      type: {class: StyleData, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 5cc104e0-423a-473e-8034-b9d346cb2357
+        m_State: 1
+        m_Disposing: 0
+        m_IsFallback: 0
+        m_Thumbnail:
+          rid: -2
+        m_Visible: 1
+        selectedCheckPointGUID: 00000000-0000-0000-0000-000000000000
+        m_FavoriteCheckPointGUID: active
+        parentID: 00000000-0000-0000-0000-000000000000
+        m_ProjectID: 11000000-0000-0000-0000-000000000011
+        m_TrainingSteps: 2000
+        m_CheckPoints:
+        - m_Guid: 03fa404b-39fc-4979-9272-deb5d8c4b24c
+          m_State: 1
+          m_Disposing: 0
+          m_ProjectID: 11000000-0000-0000-0000-000000000011
+          m_Name: 'Happy Harvest [Orion V4 2000]'
+          m_Description: 8 Nov 2023
+          parent_id: 00000000-0000-0000-0000-000000000000
+          m_TrainingSetData:
+            m_Guid: 3e758588-960f-44f5-865a-d5eaa1b1dec4
+            m_State: 5
+            m_Disposing: 0
+            m_TrainingSet: []
+            m_ProjectID: 11000000-0000-0000-0000-000000000011
+          m_ValidationImagesData:
+          - m_Guid: 96b39a19-2d3e-4bc5-aa3c-38667ed6eba5
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 96b39a19-2d3e-4bc5-aa3c-38667ed6eba5
+              m_State: 5
+              m_Disposing: 0
+            m_Prompt: A chicken
+          - m_Guid: 05de072c-ebbc-43d7-886b-7ac4f9cbd079
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 05de072c-ebbc-43d7-886b-7ac4f9cbd079
+              m_State: 5
+              m_Disposing: 0
+            m_Prompt: A cow
+          - m_Guid: 2dbfc212-f87b-45f9-a05a-06368e190ca1
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 2dbfc212-f87b-45f9-a05a-06368e190ca1
+              m_State: 5
+              m_Disposing: 0
+            m_Prompt: A dog
+          - m_Guid: e0139464-a868-402a-95b8-b4c26685a97b
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: e0139464-a868-402a-95b8-b4c26685a97b
+              m_State: 5
+              m_Disposing: 0
+            m_Prompt: A farmer
+          - m_Guid: 4421bead-a3ff-4c09-9514-61e127eb470e
+            m_State: 5
+            m_Disposing: 0
+            m_ImageArtifact:
+              m_Guid: 4421bead-a3ff-4c09-9514-61e127eb470e
+              m_State: 5
+              m_Disposing: 0
+            m_Prompt: A pine tree
+          m_FavoriteSampleOutputDataGuid: 
+          m_TrainingSteps: 1200
+        m_SampleOutputPrompts:
+        - A chicken
+        - A cow
+        - A dog
+        - A farmer
+        - A pine tree
+        m_TrainingSetData:
+        - m_Guid: 3e758588-960f-44f5-865a-d5eaa1b1dec4
+          m_State: 5
+          m_Disposing: 0
+          m_TrainingSet: []
+          m_ProjectID: 11000000-0000-0000-0000-000000000011
+        m_Name: Default
+        m_Description: Default Style
+    - rid: 877940539070873751
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 741f865e-6083-4055-b3ed-09e6abf063b9
+        m_State: 1
+        m_Disposing: 0
+    - rid: 877940539070873752
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: b8856d83-8a4a-4338-be4c-f4877dbacc5a
+        m_State: 1
+        m_Disposing: 0
+    - rid: 877940539070873753
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 312d0d4d-9f8a-4f13-a64d-0d109f2c94c6
+        m_State: 1
+        m_Disposing: 0
+    - rid: 877940539070873754
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 5a091ffc-73b6-4227-8e12-24d8d6063146
+        m_State: 1
+        m_Disposing: 0
+    - rid: 877940539070873755
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: c9a6ca7f-f619-4f88-868d-cb5b9a20df3a
+        m_State: 1
+        m_Disposing: 0
+    - rid: 877940539070873756
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: e0bc4639-42cb-4136-9e45-6be2a555fe34
+        m_State: 1
+        m_Disposing: 0
+    - rid: 877940539070873757
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: b0b9442f-462e-431c-9834-4c6b60f89e48
+        m_State: 1
+        m_Disposing: 0
+    - rid: 877940539070873758
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 67f9ec04-aa90-423e-8a44-e38ecf76940b
+        m_State: 1
+        m_Disposing: 0
+    - rid: 877940539070873759
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: b1bba91f-2a29-4177-b461-6a96375a7598
+        m_State: 1
+        m_Disposing: 0
+    - rid: 877940539070873760
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 648fc8c8-6ffe-47ae-a604-a8700700dfd6
+        m_State: 1
+        m_Disposing: 0
+    - rid: 877940539070873761
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 849fd6a3-e46f-445e-b1f4-ded25bec8f16
+        m_State: 1
+        m_Disposing: 0
+    - rid: 877940539070873762
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: fc3cd731-a43d-44db-9f46-a4da8f53394d
+        m_State: 1
+        m_Disposing: 0
+    - rid: 877940539070873763
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: 95c96c88-347c-4347-9bc5-7e73bb06fdb3
+        m_State: 1
+        m_Disposing: 0
+    - rid: 877940539070873764
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: def2aacd-32fd-4a02-ad97-a223d9221822
+        m_State: 1
+        m_Disposing: 0
+    - rid: 877940539070873765
+      type: {class: ImageArtifact, ns: Unity.Muse.StyleTrainer, asm: Unity.Muse.StyleTrainer}
+      data:
+        m_Guid: ce4beb14-0582-491a-9f29-9abaa3a20307
+        m_State: 1
         m_Disposing: 0
