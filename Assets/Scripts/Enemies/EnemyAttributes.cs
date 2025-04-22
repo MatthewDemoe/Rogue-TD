@@ -55,7 +55,7 @@ public class EnemyAttributes : MonoBehaviour
     private UnityEvent OnSpeedChanged = new();
     private UnityEvent OnHealthChanged = new();
 
-    private void Start()
+    private void Awake()
     {
         if(splineAnimate == null)
             splineAnimate = GetComponent<SplineAnimate>();

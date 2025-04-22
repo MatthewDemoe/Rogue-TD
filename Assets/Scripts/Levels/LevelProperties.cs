@@ -71,6 +71,7 @@ public class LevelProperties : MonoBehaviour
     {
         yield return new WaitForSeconds(waveAttributes.spawnDelay);
         EnemyAttributes enemyAttributes = waveAttributes.waveEnemy.GetComponent<EnemyAttributes>();
+        waveAttributes.waveEnemy.GetComponent<SplineAnimate>().Container = trackSpline;
 
         int totalEnemies = (int)(waveAttributes.enemyAmount * enemyAttributes.spawnAmountMultiplier);
 
