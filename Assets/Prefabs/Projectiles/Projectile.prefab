@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2559709633116134125}
   - component: {fileID: 745379654644607371}
   - component: {fileID: 9127622134008899757}
+  - component: {fileID: 2949275743478117470}
+  - component: {fileID: 5682956449707753261}
   m_Layer: 10
   m_Name: Projectile
   m_TagString: Untagged
@@ -63,6 +65,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -146,6 +149,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7969e50a8efb2e4290857c70a3da05e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2949275743478117470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775551172230603131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b9d37900fee8b42b95b83823a78370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5682956449707753261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775551172230603131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8205c1ab62f27b4f83f9353a2a464ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
