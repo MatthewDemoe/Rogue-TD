@@ -120,5 +120,8 @@ public class SplineSampler : MonoBehaviour
 
         m_meshFilter.mesh = trackMesh;        
         m_directionMeshFilter.mesh = directionMesh;
+
+        m_meshFilter.mesh.RecalculateNormals();
+        m_directionMeshFilter.mesh.RecalculateNormals();
     }
 }

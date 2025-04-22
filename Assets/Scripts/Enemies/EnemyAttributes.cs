@@ -72,6 +72,11 @@ public class EnemyAttributes : MonoBehaviour
         TakeDamage(tower.damage);
     }
 
+    public void TakeHit(float amount)
+    {
+        TakeDamage(amount);
+    }
+
     private void TakeDamage(float amount)
     {
         print($"Taking {amount} damage.");

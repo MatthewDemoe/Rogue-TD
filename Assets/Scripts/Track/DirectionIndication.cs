@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DirectionIndication : MonoBehaviour
 {
-    Renderer renderer;
+    Renderer m_renderer;
 
     float timeCounter = 0.0f;
     float timeMultiplier = 1.0f;
@@ -13,16 +13,17 @@ public class DirectionIndication : MonoBehaviour
 
     private void Start()
     {
-        renderer = GetComponent<Renderer>();
+        m_renderer = GetComponent<Renderer>();
     }
 
     void FixedUpdate()
     {
+        
         timeCounter -= Time.fixedDeltaTime * timeMultiplier;
         timeCounter %= 1.0f;
 
         offset.y = timeCounter;
             
-        renderer.material.mainTextureOffset = offset;
+        m_renderer.material.mainTextureOffset = offset;
     }
 }

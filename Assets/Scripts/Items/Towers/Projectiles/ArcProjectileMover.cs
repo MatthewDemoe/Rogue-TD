@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 public class ArcProjectileMover : ProjectileMover
@@ -7,6 +8,9 @@ public class ArcProjectileMover : ProjectileMover
     float m_duration = 1.0f;
 
     float m_scaleMultiplier = 2.0f;
+
+    [SerializeField]
+    private UnityEvent OnArcEnded = new();
 
     public override void Initialize(TowerProperties sourceTower)
     {
@@ -49,5 +53,8 @@ public class ArcProjectileMover : ProjectileMover
             yield return new WaitForFixedUpdate();
             elapsedTime += Time.fixedDeltaTime;
         }
+
+        OnArcEnded.Invoke();
+        Destroy(gameObject);
     }
 }
