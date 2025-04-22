@@ -3,7 +3,6 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEditor.PackageManager;
 
 public class Shop : ItemZone
 {
@@ -30,7 +29,7 @@ public class Shop : ItemZone
         for (int i = 0; i < towerSlots.Count; i++)
         {
             GameObject towerInstance = Instantiate(towers[Random.Range(0, towers.Count)], towerSlots[i].transform.position, Quaternion.identity);
-            Tower tower = towerInstance.GetComponent<Tower>();
+            TowerProperties tower = towerInstance.GetComponent<TowerProperties>();
             tower.currentZone = zone;
 
             towerSlots[i].AddItem(tower);

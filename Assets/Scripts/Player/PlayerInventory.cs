@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    List<Tower> heldTowers = new();
+    List<TowerProperties> heldTowers = new();
     List<GameObject> heldTreasures = new();
 
     void Start()

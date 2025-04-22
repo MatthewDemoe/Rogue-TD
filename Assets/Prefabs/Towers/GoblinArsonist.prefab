@@ -48,6 +48,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1080396743307314526, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080396743307314526, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080396743307314526, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080396743307314526, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298383948427360616, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1445263314767625398, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1445263314767625398, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1445263314767625398, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1445263314767625398, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043772401732668972, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043772401732668972, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043772401732668972, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043772401732668972, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2787489988347255185, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -56,12 +108,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoblinArsonist
       objectReference: {fileID: 0}
+    - target: {fileID: 6383860854078829239, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
       propertyPath: m_itemName
       value: Goblin Arsonist
       objectReference: {fileID: 0}
+    - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_description
+      value: 'Throws a firebomb which creates a burning area on the ground for a
+        period of time. '
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3677700107549751367, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6981337867535239809}
   m_SourcePrefab: {fileID: 100100000, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+--- !u!1 &5549200318579914023 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3677700107549751367, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+  m_PrefabInstance: {fileID: 9082468018736041312}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6981337867535239809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5549200318579914023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbf426f3ae3e1154e86c6db46b234229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 1775551172230603131, guid: bd5d721ed11ec534db0a9394604a9d8b, type: 3}

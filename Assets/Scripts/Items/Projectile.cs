@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -29,10 +27,10 @@ public class Projectile : DamageSource
         rb.linearVelocity = m_direction * speed;
     }
 
-    public override void Initialize(Tower sourceTower)
+    public override void Initialize(TowerProperties sourceTower)
     {
         base.Initialize(sourceTower);
-        m_target = sourceTower.GetTarget().gameObject;
+        m_target = sourceTower.enemyTracker.GetTarget().gameObject;
     }
 
     private void OnTriggerEnter(Collider other)

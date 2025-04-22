@@ -67,7 +67,7 @@ public class EnemyAttributes : MonoBehaviour
         OnHealthChanged.AddListener(CheckIfKilled);
     }
 
-    public void TakeHit(Tower tower)
+    public void TakeHit(TowerProperties tower)
     {
         TakeDamage(tower.damage);
     }

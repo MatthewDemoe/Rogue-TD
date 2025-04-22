@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageSource : MonoBehaviour
 {
-    protected Tower m_sourceTower = null;
+    protected TowerProperties m_sourceTower = null;
 
     void Start()
     {
@@ -16,7 +16,7 @@ public class DamageSource : MonoBehaviour
         
     }
 
-    public virtual void Initialize(Tower sourceTower)
+    public virtual void Initialize(TowerProperties sourceTower)
     {
         m_sourceTower = sourceTower;
     }

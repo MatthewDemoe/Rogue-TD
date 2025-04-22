@@ -23,7 +23,7 @@ public class TowerButton : MonoBehaviour
 
     private void Awake()
     {
-        Tower tower = GetComponentInParent<Tower>();
+        TowerProperties tower = GetComponentInParent<TowerProperties>();
 
         infoButton.onClick.AddListener(ToggleDisplayingInfo);
 
@@ -32,7 +32,7 @@ public class TowerButton : MonoBehaviour
         PlayerActions.Instance.OnLeftClick.AddListener(HideDisplayInfo);
     }
 
-    public void SetTower(Tower tower)
+    public void SetTower(TowerProperties tower)
     {
         infoTowerName.text = tower.itemName;
         towerCost.text = $"${tower.cost}"; 
