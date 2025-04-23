@@ -20,6 +20,8 @@ public class Shop : ItemZone
         towerSlots = towerSlotParent.GetComponentsInChildren<ItemSlot>().ToList();
 
         GenerateTowers();
+
+        LevelProperties.OnWaveComplete.AddListener(RerollShop);
     }
 
     public void GenerateTowers()
@@ -36,12 +38,18 @@ public class Shop : ItemZone
         }
     }
 
-    public void ClearShopTowers()
+    private void ClearShopTowers()
     {
         towerSlots.ForEach(towerSlot => 
         {
             towerSlot.DestroyItem();
         });
+    }
+
+    public void RerollShop()
+    {
+        ClearShopTowers();
+        GenerateTowers();
     }
 
     public override bool TryPlacement(HoldableItem item)

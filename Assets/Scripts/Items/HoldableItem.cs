@@ -131,7 +131,10 @@ public abstract class HoldableItem : MonoBehaviour
     }
 
     public void RemoveFromHoldingSlot()
-    {    
+    {
+        if (holdingSlot == null)
+            return;
+
         holdingSlot.RemoveItem();
         holdingSlot = null;
     }

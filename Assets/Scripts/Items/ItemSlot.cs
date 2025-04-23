@@ -13,6 +13,8 @@ public class ItemSlot : MonoBehaviour
 
     public void AddItem(HoldableItem item)
     {
+        item.RemoveFromHoldingSlot();
+
         heldItem = item;
 
         item.AddToItemSlot(this);
@@ -29,6 +31,9 @@ public class ItemSlot : MonoBehaviour
 
     public void DestroyItem()
     {
+        if(heldItem == null)
+            return; 
+
         Destroy(heldItem.gameObject);
         heldItem = null;
     }

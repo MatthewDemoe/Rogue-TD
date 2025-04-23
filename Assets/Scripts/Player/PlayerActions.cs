@@ -90,7 +90,7 @@ public class PlayerActions : MonoBehaviour
         if (PlayerProperties.Instance.money < item.cost)
             return false;
 
-        PlayerProperties.Instance.AdjustMoney(-item.cost);        
+        PlayerProperties.Instance.AdjustMoney(-item.cost);
 
         return true;
     }
