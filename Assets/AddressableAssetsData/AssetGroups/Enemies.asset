@@ -13,24 +13,22 @@ MonoBehaviour:
   m_Name: Enemies
   m_EditorClassIdentifier: 
   m_GroupName: Enemies
-  m_Data:
-    m_SerializedData: []
   m_GUID: cbb62f5dac325b0498bf25b2c1e369ac
   m_SerializeEntries:
-  - m_GUID: 1348c9fe86671714b8445e6537477978
-    m_Address: GenericEnemy
+  - m_GUID: 0ad4c46e755e8394f8943c3a2481f056
+    m_Address: Farmer
     m_ReadOnly: 0
     m_SerializedLabels:
     - enemy
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bfac1f8233a34474c99363a6fb58b621
-    m_Address: FastEnemy
+  - m_GUID: 771a141bab3c3d84297cdaf66e943baf
+    m_Address: Fighter
     m_ReadOnly: 0
     m_SerializedLabels:
     - enemy
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e49c35fb9785e4f42b44d749d33959d5
-    m_Address: SlowEnemy
+  - m_GUID: f8ed7bc6c78c7af4aa1062cbedd460c0
+    m_Address: Rogue
     m_ReadOnly: 0
     m_SerializedLabels:
     - enemy

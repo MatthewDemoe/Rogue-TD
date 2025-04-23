@@ -10,7 +10,7 @@ public class EnemyAttributes : MonoBehaviour
 
     [SerializeField]
     private string m_displayName = string.Empty;
-    public string displayName {get {return m_displayName;}}
+    public string displayName { get { return m_displayName; } }
 
     [SerializeField]
     private int m_minWave = 0;
@@ -37,6 +37,8 @@ public class EnemyAttributes : MonoBehaviour
     float damageTaken = 0.0f;
     public float currentHealth => baseHealth - damageTaken;
 
+    public float healthPercentage => currentHealth / baseHealth;
+
     public float distance => splineAnimate.ElapsedTime / splineAnimate.Duration;
 
     [SerializeField]
@@ -52,8 +54,14 @@ public class EnemyAttributes : MonoBehaviour
 
     EnemyActions enemyActions;
 
-    private UnityEvent OnSpeedChanged = new();
-    private UnityEvent OnHealthChanged = new();
+    [SerializeField]
+    private UnityEvent m_OnSpeedChanged = new();
+
+    [SerializeField]
+    private UnityEvent<float> m_OnHealthChanged = new();
+
+    public UnityEvent OnSpeedChanged { get { return m_OnSpeedChanged; } }
+    public UnityEvent<float> OnHealthChanged { get { return m_OnHealthChanged; } }
 
     private void Awake()
     {
@@ -82,12 +90,12 @@ public class EnemyAttributes : MonoBehaviour
         print($"Taking {amount} damage.");
 
         damageTaken += amount;
-        OnHealthChanged.Invoke();
+        OnHealthChanged.Invoke(healthPercentage);
     }
 
-    private void CheckIfKilled()
+    private void CheckIfKilled(float healthPercent)
     {
-        if (currentHealth <= 0.0f)
+        if (healthPercent <= 0.0f)
         {
             enemyActions.OnKilled.Invoke();
             Destroy(gameObject);
