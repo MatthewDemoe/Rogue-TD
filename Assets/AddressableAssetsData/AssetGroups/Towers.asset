@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Towers
   m_GUID: b70f7f6562611214f98556ad0fc0d6f3
   m_SerializeEntries:
+  - m_GUID: b0ff9e82c4e75574291598afdc59082f
+    m_Address: GoblinShotgunner
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - tower
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b5ccda41b70f4ea418d4537d00088389
     m_Address: GoblinArsonist
     m_ReadOnly: 0

@@ -23,7 +23,13 @@ public class StraightProjectileMover : ProjectileMover
     {
         base.Initialize(sourceTower);
 
-        m_direction = (m_target - transform.position).normalized;
+
+        SetDirection((m_target - transform.position).normalized);
+    }
+
+    public void SetDirection(Vector3 direction)
+    {
+        m_direction = direction;
         rb.linearVelocity = m_direction * speed;
     }
 }

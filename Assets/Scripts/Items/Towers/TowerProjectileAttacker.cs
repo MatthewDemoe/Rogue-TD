@@ -4,7 +4,7 @@ using UnityEngine;
 public class TowerProjectileAttacker : TowerAttacker
 {
     [SerializeField]
-    GameObject projectile;
+    protected GameObject projectile;
 
     protected override void TryAttack()
     {
@@ -15,6 +15,11 @@ public class TowerProjectileAttacker : TowerAttacker
 
         timeSinceLastAttack = 0.0f;
 
+        Attack();
+    }
+
+    protected override void Attack()
+    {
         GameObject projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity);
         projectileInstance.GetComponent<Projectile>().Initialize(towerProperties);
     }

@@ -9,6 +9,8 @@ public abstract class TowerAttacker : MonoBehaviour
 
     protected abstract void TryAttack();
 
+    protected abstract void Attack();
+
     private void Start()
     {
         towerProperties = GetComponent<TowerProperties>();
