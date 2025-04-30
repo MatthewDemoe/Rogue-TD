@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class TowerProperties : HoldableItem
 {
@@ -37,5 +38,22 @@ public class TowerProperties : HoldableItem
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    protected override void CheckPlacement()
+    {
+        BoxCollider boxCollider = GetComponent<BoxCollider>();
+        RaycastHit[] allHits = Physics.BoxCastAll(transform.position - Vector3.down, boxCollider.bounds.extents, Vector3.down, Quaternion.identity, Mathf.Infinity, LayerMask.GetMask(new List<string>() { "Track", "ItemZone" }.ToArray()));
+
+        bool isColliding = allHits.Any();
+        bool isCollidingWithTrack = allHits.Any((hit) => hit.collider.TryGetComponent(out SplineSampler _));
+
+        if (!isColliding || isCollidingWithTrack)
+        {
+            ReturnToProperLocation();
+            return;
+        }
+
+        base.CheckPlacement();
     }
 }

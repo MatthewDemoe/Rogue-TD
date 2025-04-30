@@ -13,7 +13,9 @@ public class PrefabInstantiator : ProjectileComponent
 
     private void Start()
     {
-        prefabToInstantiate.GetComponent<ProjectileComponent>().Initialize(m_sourceTower);
+        //TODO: Fix this    
+        if(prefabToInstantiate.TryGetComponent(out ProjectileComponent projectileComponent))
+            projectileComponent.Initialize(m_sourceTower);
     }
 
     public void InstantiatePrefab()

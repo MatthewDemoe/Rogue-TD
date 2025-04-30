@@ -114,15 +114,6 @@ public abstract class HoldableItem : MonoBehaviour
         BoxCollider boxCollider = GetComponent<BoxCollider>();
 
         RaycastHit[] allHits = Physics.BoxCastAll(transform.position - Vector3.down, boxCollider.bounds.extents, Vector3.down, Quaternion.identity, Mathf.Infinity, LayerMask.GetMask(new List<string>() { "Track", "ItemZone" }.ToArray()));
-        bool isColliding = allHits.Any();
-        bool isCollidingWithTrack = allHits.Any((hit) => hit.collider.TryGetComponent(out SplineSampler _));
-
-        if (!isColliding || isCollidingWithTrack)
-        {
-            ReturnToProperLocation();
-            return;
-        }
-
         RaycastHit hitInfo = allHits.First((hit) => hit.collider.TryGetComponent(out ItemZone newZone));
 
         if (hitInfo.collider.TryGetComponent(out ItemZone newZone))
@@ -151,7 +142,7 @@ public abstract class HoldableItem : MonoBehaviour
             ReturnToHoldingSlot();
     }
 
-    private void ReturnToProperLocation()
+    protected void ReturnToProperLocation()
     {
         if (currentZone == ItemZone.Zone.Inventory || currentZone == ItemZone.Zone.Shop)
             ReturnToHoldingSlot();

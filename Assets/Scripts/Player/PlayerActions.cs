@@ -63,7 +63,7 @@ public class PlayerActions : MonoBehaviour
     {
         if (Physics.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.down, out var hitInfo, Mathf.Infinity, LayerMask.GetMask("Tower")))
         {
-            TowerProperties tower = hitInfo.collider.GetComponent<TowerProperties>();
+            HoldableItem tower = hitInfo.collider.GetComponent<HoldableItem>();
 
             PlayerProperties.Instance.HoldItem(tower);
         }
