@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(SelfDestroyer))]
-public abstract class GroundHazard : MonoBehaviour
+public abstract class GroundHazard : ProjectileComponent
 {
     [SerializeField]
     UnityEvent m_OnDestroyEvent = new();

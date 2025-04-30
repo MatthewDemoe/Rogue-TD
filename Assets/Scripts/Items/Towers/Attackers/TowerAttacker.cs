@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(TowerProperties))]
@@ -7,7 +8,17 @@ public abstract class TowerAttacker : MonoBehaviour
 
     protected float timeSinceLastAttack = 0.0f;
 
-    protected abstract void TryAttack();
+    protected virtual void TryAttack()
+    {
+        timeSinceLastAttack += Time.fixedDeltaTime;
+
+        if (!towerProperties.enemyTracker.enemiesInRange.Any() || (timeSinceLastAttack < towerProperties.fireRate))
+            return;
+
+        timeSinceLastAttack = 0.0f;
+
+        Attack();
+    }
 
     protected abstract void Attack();
 
