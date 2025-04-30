@@ -1,23 +1,20 @@
 using UnityEngine;
 
-public class PrefabInstantiator : MonoBehaviour
+public class PrefabInstantiator : ProjectileComponent
 {
     [SerializeField]
     GameObject prefabToInstantiate;
-
     
     [SerializeField]
     Transform parent = null;
 
     [SerializeField]
     bool instantiateInWorldSpace = true;
-    
-    [SerializeField]
-    Vector3 position = Vector3.zero;
 
-    [SerializeField]
-    Quaternion rotation = Quaternion.identity;
-    
+    private void Start()
+    {
+        prefabToInstantiate.GetComponent<ProjectileComponent>().Initialize(m_sourceTower);
+    }
 
     public void InstantiatePrefab()
     {

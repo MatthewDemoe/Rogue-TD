@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
 public abstract class HoldableItem : MonoBehaviour
 {
@@ -23,6 +22,11 @@ public abstract class HoldableItem : MonoBehaviour
     [SerializeField]
     private int m_cost = 2;
     public int cost { get { return m_cost; } }
+
+    [SerializeField]
+    private UnityEvent m_OnSell = new();
+
+    public UnityEvent OnSell => m_OnSell;
 
     public int sellValue => cost / 2;
 

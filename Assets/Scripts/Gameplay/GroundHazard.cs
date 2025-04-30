@@ -16,7 +16,7 @@ public abstract class GroundHazard : ProjectileComponent
     protected virtual void Start()
     {
         m_selfDestroyer = GetComponent<SelfDestroyer>();
-        m_selfDestroyer.SetDuration(duration);
+        m_selfDestroyer.SetDuration(duration * m_sourceTower.duration);
     }
 
     private void OnDestroy()

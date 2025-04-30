@@ -29,4 +29,10 @@ public class FireArea : GroundHazard
             m_enemiesInArea.Remove(enemyAttributes);
         }
     }
+
+    public override void Initialize(TowerProperties sourceTower)
+    {
+        base.Initialize(sourceTower);
+        damage *= sourceTower.damage;
+    }
 }

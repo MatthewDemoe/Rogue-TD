@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class Inventory : ItemZone
 {
+    public static Inventory Instance;
+
     [SerializeField]
     GameObject towerSlotParent;
 
     List<ItemSlot> itemSlots = new();
 
+    public ItemSlot firstEmptySlot => itemSlots.FirstOrDefault(slot => slot.heldItem is null);
+
     [SerializeField]
     GameObject towerPrefab;
 
     public override Zone zone => Zone.Inventory;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     protected override void Start()
     {
@@ -27,8 +39,6 @@ public class Inventory : ItemZone
     {
         if (item.currentZone == zone)
             return false;
-
-        ItemSlot firstEmptySlot = itemSlots.FirstOrDefault(slot => slot.heldItem is null);
 
         if (firstEmptySlot is null)
             return false;
@@ -46,10 +56,7 @@ public class Inventory : ItemZone
 
         firstEmptySlot.AddItem(item);
         item.currentZone = zone;
-        item.transform.parent = transform;
 
         return true;
     }
-
-
 }

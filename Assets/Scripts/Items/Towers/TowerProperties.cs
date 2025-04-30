@@ -21,6 +21,11 @@ public class TowerProperties : HoldableItem
 
     public float damage { get { return m_damage; } }
 
+    [SerializeField]
+    private float m_duration = 1.0f;
+
+    public float duration { get { return m_duration; } }
+
     public TowerEnemyTracker enemyTracker { get; private set; } = null;
 
     void Start()

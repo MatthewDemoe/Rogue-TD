@@ -66,6 +66,7 @@ public class Shop : ItemZone
     private void SellItem(HoldableItem item)
     {
         PlayerProperties.Instance.AdjustMoney(item.sellValue);
+        item.OnSell.Invoke();
         Destroy(item.gameObject);
     }
 
