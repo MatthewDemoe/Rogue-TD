@@ -121,6 +121,14 @@ PrefabInstance:
       value: 'Throws a firebomb which creates a burning area on the ground for a
         period of time. '
       objectReference: {fileID: 0}
+    - target: {fileID: 7407896126777638917, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_mechanicReferences.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7407896126777638917, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: 'm_mechanicReferences.Array.data[3]'
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

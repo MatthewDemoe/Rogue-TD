@@ -19,10 +19,10 @@ public class MechanicReferences : MonoBehaviour
 
     public List<MechanicReference> mechanicReferences => m_mechanicReferences;
 
-    public MechanicReference ReferenceIntersection(MechanicReferences otherReference)
+    public List<MechanicReference> ReferenceIntersection(MechanicReferences otherReference)
     {
-        MechanicReference intersectingReference = mechanicReferences.Intersect(otherReference.mechanicReferences).FirstOrDefault();
+        List<MechanicReference> intersectingReferences = mechanicReferences.Intersect(otherReference.mechanicReferences).ToList();
 
-        return intersectingReference;
+        return intersectingReferences;
     }
 }

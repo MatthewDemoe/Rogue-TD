@@ -26,9 +26,14 @@ public class Loot : HoldableItem
         MechanicReferences lootReferences = GetComponent<MechanicReferences>();
         MechanicReferences towerReferences = collidingTower.GetComponent<MechanicReferences>(); 
 
-        MechanicReferences.MechanicReference statToBoost = towerReferences.ReferenceIntersection(lootReferences);
+        List<MechanicReferences.MechanicReference> intersectingStats = towerReferences.ReferenceIntersection(lootReferences);
+        if(!intersectingStats.Any())
+        {
+            base.CheckPlacement();
+            return;
+        }
 
-        collidingTower.BoostStat(statToBoost, m_bonusAmount);
+        intersectingStats.ForEach(stat => collidingTower.BoostStat(stat, m_bonusAmount));
 
         RemoveFromHoldingSlot();
 
