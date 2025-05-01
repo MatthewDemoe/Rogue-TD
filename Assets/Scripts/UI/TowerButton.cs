@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class TowerButton : MonoBehaviour
@@ -19,7 +20,25 @@ public class TowerButton : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI description;
 
-    bool displayingInfo = false;
+    [SerializeField]
+    GameObject rangeDecal;
+
+    bool m_displayingInfo = false;
+
+    public bool displayingInfo
+    {
+        get => m_displayingInfo;
+        set
+        {
+            m_displayingInfo = value;
+            OnDisplayingInfoChanged.Invoke(m_displayingInfo);
+        }
+    }
+
+    [SerializeField]
+    private UnityEvent<bool> m_OnDisplayingInfoChanged = new();
+
+    public UnityEvent<bool> OnDisplayingInfoChanged => m_OnDisplayingInfoChanged;
 
     private void Awake()
     {
@@ -43,6 +62,7 @@ public class TowerButton : MonoBehaviour
     private void HideDisplayInfo()
     {
         displayingInfo = false;
+
         infoParent.gameObject.SetActive(displayingInfo);
     }
 

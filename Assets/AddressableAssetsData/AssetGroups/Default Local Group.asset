@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: c2850f99e6c2e7f4980c8b12a4023019
   m_SerializeEntries:
+  - m_GUID: 79d0c47029980c04caed1c1327f99c17
+    m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr spikes
+      impact ab.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e4c9cb4f68beaf64585e0a493e467a5f
     m_Address: Assets/Materials/BasicTower.mat
     m_ReadOnly: 0

@@ -15,9 +15,7 @@ public class Track : ItemZone
         if (item.currentZone != zone)
             item.RemoveFromHoldingSlot();
 
-        item.currentZone = zone;
-        item.lastPlacement = item.transform.position;
-        item.transform.parent = transform;
+        item.SetZone(this);
 
         return true;
     }

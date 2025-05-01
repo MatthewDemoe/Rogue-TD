@@ -1,10 +1,19 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(MechanicReferences))]
 public class TowerProperties : HoldableItem
 {
+    public enum PropertyType
+    {
+        Damage,
+        FireRate, 
+        Range,
+        Duration, 
+    }
+
     [SerializeField]
     private float m_baseRange = 3.0f;
 
@@ -17,42 +26,73 @@ public class TowerProperties : HoldableItem
         set
         {
             m_rangeBonus = value;
-            m_rangeCollider.radius = range;
+            OnPropertyChanged.Invoke(PropertyType.Range, range);
         }
     }
 
     public float range => m_baseRange + rangeBonus;
 
     [SerializeField]
-    private SphereCollider m_rangeCollider;
-
-    [SerializeField]
     private float m_fireRate = 1.0f;
 
-    public float fireRateBonus = 0.0f;
+    private float m_fireRateBonus = 0.0f;
+
+    public float fireRateBonus 
+    {
+        get { return m_fireRateBonus; }
+        set
+        {
+            m_fireRateBonus = value;
+            OnPropertyChanged.Invoke(PropertyType.FireRate, fireRate);
+        }
+    }
 
     public float fireRate => m_fireRate + fireRateBonus;
 
     [SerializeField]
     private float m_damage = 1.0f;
 
-    public float damageBonus = 0.0f;
+    private float m_damageBonus = 0.0f;
+
+    public float damageBonus
+    {
+        get { return m_damageBonus; }
+        set
+        {
+            m_damageBonus = value;
+            OnPropertyChanged.Invoke(PropertyType.Damage, damage);
+        }
+    }
 
     public float damage => m_damage + damageBonus; 
 
     [SerializeField]
     private float m_duration = 1.0f;
 
-    public float durationBonus = 0.0f;
+    private float m_durationBonus = 0.0f;
+
+    public float durationBonus
+    {
+        get { return m_durationBonus; }
+        set
+        {
+            m_durationBonus = value;
+            OnPropertyChanged.Invoke(PropertyType.Duration, duration);
+        }
+    }
 
     public float duration => m_duration + durationBonus; 
 
     public TowerEnemyTracker enemyTracker { get; private set; } = null;
 
+    [SerializeField]
+    private UnityEvent<PropertyType, float> m_OnRangeChanged = new();
+
+    public UnityEvent<PropertyType, float> OnPropertyChanged => m_OnRangeChanged;
+
     void Start()
     {
         enemyTracker = GetComponentInChildren<TowerEnemyTracker>();
-        m_rangeCollider.radius = range;
     }
 
     protected override void FixedUpdate()

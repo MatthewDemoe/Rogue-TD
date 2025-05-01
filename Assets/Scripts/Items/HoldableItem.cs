@@ -29,6 +29,8 @@ public abstract class HoldableItem : MonoBehaviour
     public UnityEvent OnSell => m_OnSell;
 
     public int sellValue => cost / 2;
+    
+    protected Vector3 lastPlacement = Vector3.zero;
 
     private bool isHoldable = true;
     private bool isHeld = false;
@@ -54,7 +56,6 @@ public abstract class HoldableItem : MonoBehaviour
         }
     }
 
-    public Vector3 lastPlacement = Vector3.zero;
 
     private void Awake()
     {
@@ -121,7 +122,12 @@ public abstract class HoldableItem : MonoBehaviour
             bool placedSuccessfully = newZone.TryPlacement(this);
 
             if (!placedSuccessfully)
+            {
                 ReturnToProperLocation();
+                return;
+            }
+
+            lastPlacement = transform.position;
         }
     }
 
@@ -133,6 +139,12 @@ public abstract class HoldableItem : MonoBehaviour
         holdingSlot.RemoveItem();
         holdingSlot = null;
     }
+    
+    public void SetZone(ItemZone itemZone)
+    {
+        currentZone = itemZone.zone;
+        transform.parent = itemZone.transform;
+    }   
 
     public void AddToItemSlot(ItemSlot itemSlot)
     {

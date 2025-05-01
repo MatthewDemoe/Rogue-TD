@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerSlotParent: {fileID: 1008545713}
-  towerPrefab: {fileID: 5503951063559215959, guid: fb2569a3a60bebf46b588715f58a22ca, type: 3}
+  towerPrefab: {fileID: 5358636502526202457, guid: 3fcfef47a4a369e47a759e50a9c5298e, type: 3}
 --- !u!1 &43044786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1983,6 +1983,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409473216563040763, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2819920857956146954, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2819920857956146954, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
