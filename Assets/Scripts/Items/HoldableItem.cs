@@ -42,16 +42,16 @@ public abstract class HoldableItem : MonoBehaviour
 
     private ItemSlot holdingSlot = null;
 
-    private ItemZone.Zone _currentZone = ItemZone.Zone.Empty;
+    private ItemZone.Zone m_currentZone = ItemZone.Zone.Empty;
     public ItemZone.Zone currentZone 
     {
         get
         {
-            return _currentZone;
+            return m_currentZone;
         }
         set
         {
-            _currentZone = value;
+            m_currentZone = value;
             CheckActiveInNewState(GameStateTracker.Instance.currentState);
         }
     }

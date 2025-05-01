@@ -423,6 +423,7 @@ GameObject:
   - component: {fileID: 2749812632884143778}
   - component: {fileID: 1683852353019808463}
   - component: {fileID: 3115766880681548317}
+  - component: {fileID: 5432602965525856753}
   m_Layer: 5
   m_Name: TowerInfo
   m_TagString: Untagged
@@ -530,3 +531,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5432602965525856753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8651041287146499762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554652cb72b3ddf4594656f416dbd4ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerCost: {fileID: 4538275557886244677}
+  infoTowerName: {fileID: 2471695818211408721}
+  description: {fileID: 809193700795794996}

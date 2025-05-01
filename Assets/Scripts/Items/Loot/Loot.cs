@@ -21,7 +21,15 @@ public class Loot : HoldableItem
             return;
         }
 
-        TowerProperties collidingTower = allHits.FirstOrDefault((hit) => hit.collider.TryGetComponent(out TowerProperties tower)).collider.GetComponent<TowerProperties>();
+        RaycastHit hit = allHits.FirstOrDefault((hit) => hit.collider.TryGetComponent(out TowerProperties tower));
+        
+        if (hit.collider == null)
+        {
+            base.CheckPlacement();
+            return;
+        }
+
+        TowerProperties collidingTower = hit.collider.GetComponent<TowerProperties>();
 
         MechanicReferences lootReferences = GetComponent<MechanicReferences>();
         MechanicReferences towerReferences = collidingTower.GetComponent<MechanicReferences>(); 
