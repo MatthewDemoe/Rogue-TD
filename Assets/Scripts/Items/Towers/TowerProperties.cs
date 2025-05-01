@@ -6,27 +6,46 @@ using System.Collections.Generic;
 public class TowerProperties : HoldableItem
 {
     [SerializeField]
-    private float m_range = 3.0f;
+    private float m_baseRange = 3.0f;
+
+    private float m_rangeBonus = 0.0f;
+
+    public float rangeBonus 
+    { 
+        get { return m_rangeBonus; }
+
+        set
+        {
+            m_rangeBonus = value;
+            m_rangeCollider.radius = range;
+        }
+    }
+
+    public float range => m_baseRange + rangeBonus;
 
     [SerializeField]
     private SphereCollider m_rangeCollider;
 
-    public float range { get { return m_range; } }
-
     [SerializeField]
     private float m_fireRate = 1.0f;
 
-    public float fireRate { get {return m_fireRate;} }
+    public float fireRateBonus = 0.0f;
+
+    public float fireRate => m_fireRate + fireRateBonus;
 
     [SerializeField]
     private float m_damage = 1.0f;
 
-    public float damage { get { return m_damage; } }
+    public float damageBonus = 0.0f;
+
+    public float damage => m_damage + damageBonus; 
 
     [SerializeField]
     private float m_duration = 1.0f;
 
-    public float duration { get { return m_duration; } }
+    public float durationBonus = 0.0f;
+
+    public float duration => m_duration + durationBonus; 
 
     public TowerEnemyTracker enemyTracker { get; private set; } = null;
 
@@ -58,15 +77,32 @@ public class TowerProperties : HoldableItem
         base.CheckPlacement();
     }
 
-    public void BoostStat(MechanicReferences.MechanicReference statToBoost)
+    public void BoostStat(MechanicReferences.MechanicReference statToBoost, float bonusAmount)
     {
         switch (statToBoost)
         {
-            case MechanicReferences.MechanicReference.Range:
-                Debug.Log("Boosting range");
+            case MechanicReferences.MechanicReference.Damage:
+                damageBonus += bonusAmount;
                 break;
+
+            case MechanicReferences.MechanicReference.Fire:
+                damageBonus += bonusAmount;
+                break;
+
+            case MechanicReferences.MechanicReference.Poison:
+                damageBonus += bonusAmount;
+                break;
+
+            case MechanicReferences.MechanicReference.Slow:
+                durationBonus += bonusAmount;
+                break;
+
+            case MechanicReferences.MechanicReference.Range:
+                rangeBonus += bonusAmount;
+                break;
+
             case MechanicReferences.MechanicReference.FireRate:
-                m_fireRate += 1.0f;
+                fireRateBonus += bonusAmount;
                 break;
 
             default:

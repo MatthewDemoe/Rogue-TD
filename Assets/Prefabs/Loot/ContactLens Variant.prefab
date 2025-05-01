@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_itemName
       value: Contact Lens
       objectReference: {fileID: 0}
+    - target: {fileID: 8017560833463006195, guid: 8ac44f4bd8edc3a44934db9e9c7abd43, type: 3}
+      propertyPath: m_bonusAmount
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8788394381583556927, guid: 8ac44f4bd8edc3a44934db9e9c7abd43, type: 3}
       propertyPath: m_mechanicReferences.Array.size
       value: 1

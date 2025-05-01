@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(MechanicReferences))]
 public class Loot : HoldableItem
 {
+    [SerializeField]
+    private float m_bonusAmount = 0.0f;
+
     protected override void CheckPlacement()
     {
         BoxCollider boxCollider = GetComponent<BoxCollider>();
@@ -25,7 +28,7 @@ public class Loot : HoldableItem
 
         MechanicReferences.MechanicReference statToBoost = towerReferences.ReferenceIntersection(lootReferences);
 
-        collidingTower.BoostStat(statToBoost);
+        collidingTower.BoostStat(statToBoost, m_bonusAmount);
 
         RemoveFromHoldingSlot();
 
