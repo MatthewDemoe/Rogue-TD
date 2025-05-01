@@ -2,6 +2,7 @@ using System.Linq;
 using UnityEngine;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(MechanicReferences))]
 public class TowerProperties : HoldableItem
 {
     [SerializeField]
@@ -55,5 +56,22 @@ public class TowerProperties : HoldableItem
         }
 
         base.CheckPlacement();
+    }
+
+    public void BoostStat(MechanicReferences.MechanicReference statToBoost)
+    {
+        switch (statToBoost)
+        {
+            case MechanicReferences.MechanicReference.Range:
+                Debug.Log("Boosting range");
+                break;
+            case MechanicReferences.MechanicReference.FireRate:
+                m_fireRate += 1.0f;
+                break;
+
+            default:
+                Debug.LogWarning($"Stat {statToBoost} not found");
+                break;
+        }
     }
 }

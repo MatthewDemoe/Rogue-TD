@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 639457960059217865}
   - component: {fileID: 7424676108095888081}
   - component: {fileID: 7290648557745749082}
+  - component: {fileID: 7407896126777638917}
   m_Layer: 9
   m_Name: BasicTower
   m_TagString: Untagged
@@ -105,11 +106,28 @@ MonoBehaviour:
   m_itemName: Goblin Sharpshooter
   m_description: Fires a projectile at the closest enemy.
   m_cost: 2
+  m_OnSell:
+    m_PersistentCalls:
+      m_Calls: []
   lastPlacement: {x: 0, y: 0, z: 0}
   m_range: 3
   m_rangeCollider: {fileID: 1846724138909996288}
   m_fireRate: 1
   m_damage: 0.5
+  m_duration: 1
+--- !u!114 &7407896126777638917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3677700107549751367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a17b210288feda440ae4cbba9de172e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_mechanicReferences: 000000000400000005000000
 --- !u!1 &5219284334961392792
 GameObject:
   m_ObjectHideFlags: 0
