@@ -11,7 +11,7 @@ public class Loot : HoldableItem
     protected override void CheckPlacement()
     {
         BoxCollider boxCollider = GetComponent<BoxCollider>();
-        RaycastHit[] allHits = Physics.BoxCastAll(transform.position - Vector3.down, boxCollider.bounds.extents, Vector3.down, Quaternion.identity, Mathf.Infinity, LayerMask.GetMask(new List<string>() { "Tower" }.ToArray()));
+        RaycastHit[] allHits = Physics.BoxCastAll(transform.position - Vector3.down, boxCollider.bounds.extents, Vector3.down, Quaternion.identity, Mathf.Infinity, LayerMask.GetMask(new List<string>() { "Item" }.ToArray()));
 
         bool isCollidingWithTower = allHits.Any();
 
