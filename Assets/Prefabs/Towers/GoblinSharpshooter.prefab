@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: 2787489988347255185, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b67f3a91b7ceb6140a321a3064fe897b, type: 3}
+      objectReference: {fileID: 21300000, guid: ba6fd63ac54639d44a4b0fcb0467aa39, type: 3}
     - target: {fileID: 3677700107549751367, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
       propertyPath: m_Name
       value: GoblinSharpshooter
