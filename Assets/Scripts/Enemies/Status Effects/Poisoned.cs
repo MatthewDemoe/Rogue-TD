@@ -14,7 +14,7 @@ public class Poisoned : StatusEffect
 
         damage = poisonDamage.propertyValue;
 
-        Init(towerProperties);
+        base.Init(towerProperties);
     }
 
     protected override void PerformEffect()

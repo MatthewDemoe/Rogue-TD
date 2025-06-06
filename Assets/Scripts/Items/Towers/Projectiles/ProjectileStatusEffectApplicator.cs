@@ -1,16 +1,22 @@
+using System;
 using UnityEngine;
 
-public class ProjectileStatusEffectApplicator : MonoBehaviour
+[RequireComponent(typeof(StatusEffect))]
+public class ProjectileStatusEffectApplicator : ProjectileComponent
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    StatusEffect statusEffect;
+    private void Start()
     {
-        
+        statusEffect = GetComponent<StatusEffect>();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void OnTriggerEnter(Collider other)
     {
-        
+        if (other.TryGetComponent(out EnemyAttributes enemyAttributes))
+        {
+            enemyAttributes.gameObject.AddComponent(statusEffect.GetType());
+            StatusEffect enemyStatusEffect = enemyAttributes.GetComponent<StatusEffect>();
+            enemyStatusEffect.Init(m_sourceTower);
+        }
     }
 }
