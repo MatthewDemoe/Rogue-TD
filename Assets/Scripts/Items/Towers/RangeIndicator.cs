@@ -1,3 +1,5 @@
+using System.Linq;
+using Unity.Properties;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -15,17 +17,26 @@ public class RangeIndicator : MonoBehaviour
     {
         towerProperties = GetComponent<TowerProperties>();
 
-        AdjustRangeIndicator(TowerProperties.PropertyType.Range, towerProperties.range);
+        NamedProperty rangeProperty = towerProperties.TryGetProperty(NamedProperty.PropertyType.Range);
+
+        if (rangeProperty is null)
+        {
+            Debug.LogWarning($"Stat {rangeProperty} not found on tower.");
+            Destroy(this);
+            return;
+        }
+
+        AdjustRangeIndicator(rangeProperty);
 
         towerProperties.OnPropertyChanged.AddListener(AdjustRangeIndicator);
     }
 
-    private void AdjustRangeIndicator(TowerProperties.PropertyType propertyType, float newValue)
+    private void AdjustRangeIndicator(NamedProperty namedProperty)
     {
-        if(propertyType != TowerProperties.PropertyType.Range)
+        if(namedProperty.propertyType != NamedProperty.PropertyType.Range)
             return;
 
-        m_rangeCollider.radius = newValue;
-        m_rangeIndicator.size = Vector3.one * newValue;
+        m_rangeCollider.radius = namedProperty.propertyValue;
+        m_rangeIndicator.size = Vector3.one * namedProperty.propertyValue;
     }
 }

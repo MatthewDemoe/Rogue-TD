@@ -5,13 +5,11 @@ public class FireArea : GroundHazard
 {
     private float damage = 0.01f;
 
-    protected override float duration => 2.5f;
-
     List<EnemyAttributes> m_enemiesInArea = new();
 
     private void FixedUpdate()
     {
-        m_enemiesInArea.ForEach(enemy => enemy.TakeHit(damage));
+        m_enemiesInArea.ForEach(enemy => enemy.TakeDamage(damage));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,6 +31,15 @@ public class FireArea : GroundHazard
     public override void Initialize(TowerProperties sourceTower)
     {
         base.Initialize(sourceTower);
-        damage *= sourceTower.damage;
+
+        NamedProperty fireDamageProperty = sourceTower.TryGetProperty(NamedProperty.PropertyType.FireDamage);
+
+        if (fireDamageProperty is null)
+        {
+            Debug.LogWarning($"Attempting to get fire damage from a tower, {sourceTower.name}, that does not have the fire property.");
+            return;
+        }
+
+        damage *= fireDamageProperty.propertyValue;
     }
 }

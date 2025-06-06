@@ -78,6 +78,7 @@ public abstract class HoldableItem : MonoBehaviour
             return false;
 
         SetFollowMousePosition(true);
+
         return true;
     }
 

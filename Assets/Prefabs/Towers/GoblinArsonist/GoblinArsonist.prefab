@@ -121,6 +121,54 @@ PrefabInstance:
       value: 'Throws a firebomb which creates a burning area on the ground for a
         period of time. '
       objectReference: {fileID: 0}
+    - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: towerProperties.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_namedProperties.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_namedProperties.Array.data[0].m_propertyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_namedProperties.Array.data[1].m_propertyType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_namedProperties.Array.data[2].m_propertyType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_namedProperties.Array.data[3].m_propertyType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_namedProperties.Array.data[0].m_propertyValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_namedProperties.Array.data[1].m_propertyValue
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_namedProperties.Array.data[2].m_propertyValue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_namedProperties.Array.data[3].m_propertyValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_OnRangeChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
+      propertyPath: m_OnRangeChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7407896126777638917, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
       propertyPath: m_mechanicReferences.Array.size
       value: 4

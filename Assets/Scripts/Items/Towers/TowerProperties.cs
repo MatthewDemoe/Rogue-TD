@@ -3,92 +3,20 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(MechanicReferences))]
 public class TowerProperties : HoldableItem
 {
-    public enum PropertyType
-    {
-        Damage,
-        FireRate, 
-        Range,
-        Duration, 
-    }
-
     [SerializeField]
-    private float m_baseRange = 3.0f;
+    private List<NamedProperty> m_namedProperties;
 
-    private float m_rangeBonus = 0.0f;
-
-    public float rangeBonus 
-    { 
-        get { return m_rangeBonus; }
-
-        set
-        {
-            m_rangeBonus = value;
-            OnPropertyChanged.Invoke(PropertyType.Range, range);
-        }
-    }
-
-    public float range => m_baseRange + rangeBonus;
-
-    [SerializeField]
-    private float m_fireRate = 1.0f;
-
-    private float m_fireRateBonus = 0.0f;
-
-    public float fireRateBonus 
-    {
-        get { return m_fireRateBonus; }
-        set
-        {
-            m_fireRateBonus = value;
-            OnPropertyChanged.Invoke(PropertyType.FireRate, fireRate);
-        }
-    }
-
-    public float fireRate => m_fireRate + fireRateBonus;
-
-    [SerializeField]
-    private float m_damage = 1.0f;
-
-    private float m_damageBonus = 0.0f;
-
-    public float damageBonus
-    {
-        get { return m_damageBonus; }
-        set
-        {
-            m_damageBonus = value;
-            OnPropertyChanged.Invoke(PropertyType.Damage, damage);
-        }
-    }
-
-    public float damage => m_damage + damageBonus; 
-
-    [SerializeField]
-    private float m_duration = 1.0f;
-
-    private float m_durationBonus = 0.0f;
-
-    public float durationBonus
-    {
-        get { return m_durationBonus; }
-        set
-        {
-            m_durationBonus = value;
-            OnPropertyChanged.Invoke(PropertyType.Duration, duration);
-        }
-    }
-
-    public float duration => m_duration + durationBonus; 
+    public List<NamedProperty> namedProperties => m_namedProperties;
+    public NamedProperty TryGetProperty(NamedProperty.PropertyType property) => namedProperties.FirstOrDefault(namedProperty => namedProperty.propertyType == property);
 
     public TowerEnemyTracker enemyTracker { get; private set; } = null;
 
     [SerializeField]
-    private UnityEvent<PropertyType, float> m_OnRangeChanged = new();
+    private UnityEvent<NamedProperty> m_OnPropertyChanged = new();
 
-    public UnityEvent<PropertyType, float> OnPropertyChanged => m_OnRangeChanged;
+    public UnityEvent<NamedProperty> OnPropertyChanged => m_OnPropertyChanged;
 
     void Start()
     {
@@ -117,37 +45,17 @@ public class TowerProperties : HoldableItem
         base.CheckPlacement();
     }
 
-    public void BoostStat(MechanicReferences.MechanicReference statToBoost, float bonusAmount)
+    public void BoostStat(NamedProperty.PropertyType property, float bonusAmount)
     {
-        switch (statToBoost)
+        NamedProperty propertyToBoost = namedProperties.FirstOrDefault(namedProperty => namedProperty.propertyType == property);
+
+        if (propertyToBoost is null)
         {
-            case MechanicReferences.MechanicReference.Damage:
-                damageBonus += bonusAmount;
-                break;
-
-            case MechanicReferences.MechanicReference.Fire:
-                damageBonus += bonusAmount;
-                break;
-
-            case MechanicReferences.MechanicReference.Poison:
-                damageBonus += bonusAmount;
-                break;
-
-            case MechanicReferences.MechanicReference.Slow:
-                durationBonus += bonusAmount;
-                break;
-
-            case MechanicReferences.MechanicReference.Range:
-                rangeBonus += bonusAmount;
-                break;
-
-            case MechanicReferences.MechanicReference.FireRate:
-                fireRateBonus += bonusAmount;
-                break;
-
-            default:
-                Debug.LogWarning($"Stat {statToBoost} not found");
-                break;
+            Debug.LogWarning($"Stat {property} not found on tower.");
+            return;
         }
+
+        propertyToBoost.propertyBonus += bonusAmount;
+        OnPropertyChanged.Invoke(propertyToBoost);
     }
 }

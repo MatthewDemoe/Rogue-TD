@@ -54,11 +54,15 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 0c992f0d15ec60f44851a922a8d2b071, type: 3}
     - target: {fileID: 5887859693683809741, guid: 8ac44f4bd8edc3a44934db9e9c7abd43, type: 3}
       propertyPath: m_Name
-      value: ContactLens Variant
+      value: ContactLens
       objectReference: {fileID: 0}
     - target: {fileID: 8017560833463006195, guid: 8ac44f4bd8edc3a44934db9e9c7abd43, type: 3}
       propertyPath: m_itemName
       value: Contact Lens
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017560833463006195, guid: 8ac44f4bd8edc3a44934db9e9c7abd43, type: 3}
+      propertyPath: lootProperty
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8017560833463006195, guid: 8ac44f4bd8edc3a44934db9e9c7abd43, type: 3}
       propertyPath: m_bonusAmount

@@ -61,7 +61,7 @@ public class PlayerActions : MonoBehaviour
 
     private void LMBDown()
     {
-        if (Physics.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.down, out var hitInfo, Mathf.Infinity, LayerMask.GetMask("Tower")))
+        if (Physics.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.down, out var hitInfo, Mathf.Infinity, LayerMask.GetMask("Item")))
         {
             HoldableItem tower = hitInfo.collider.GetComponent<HoldableItem>();
 

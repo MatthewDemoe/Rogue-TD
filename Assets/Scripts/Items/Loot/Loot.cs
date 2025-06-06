@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(MechanicReferences))]
 public class Loot : HoldableItem
 {
     [SerializeField]
     private float m_bonusAmount = 0.0f;
 
+    [SerializeField]
+    NamedProperty.PropertyType lootProperty;
     protected override void CheckPlacement()
     {
         BoxCollider boxCollider = GetComponent<BoxCollider>();
@@ -30,18 +31,15 @@ public class Loot : HoldableItem
         }
 
         TowerProperties collidingTower = hit.collider.GetComponent<TowerProperties>();
+        NamedProperty towerProperty = collidingTower.TryGetProperty(lootProperty);
 
-        MechanicReferences lootReferences = GetComponent<MechanicReferences>();
-        MechanicReferences towerReferences = collidingTower.GetComponent<MechanicReferences>(); 
-
-        List<MechanicReferences.MechanicReference> intersectingStats = towerReferences.ReferenceIntersection(lootReferences);
-        if(!intersectingStats.Any())
+        if(towerProperty is null)
         {
             base.CheckPlacement();
             return;
         }
 
-        intersectingStats.ForEach(stat => collidingTower.BoostStat(stat, m_bonusAmount));
+        collidingTower.BoostStat(lootProperty, m_bonusAmount);
 
         RemoveFromHoldingSlot();
 

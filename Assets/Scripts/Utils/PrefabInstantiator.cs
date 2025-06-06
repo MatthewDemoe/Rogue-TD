@@ -11,20 +11,19 @@ public class PrefabInstantiator : ProjectileComponent
     [SerializeField]
     bool instantiateInWorldSpace = true;
 
-    private void Start()
-    {
-        //TODO: Fix this    
-        if(prefabToInstantiate.TryGetComponent(out ProjectileComponent projectileComponent))
-            projectileComponent.Initialize(m_sourceTower);
-    }
-
     public void InstantiatePrefab()
     {
-        Instantiate(prefabToInstantiate, parent, instantiateInWorldSpace);
+        GameObject instantiatedObject = Instantiate(prefabToInstantiate, parent, instantiateInWorldSpace);
+
+        if (instantiatedObject.TryGetComponent(out ProjectileComponent projectileComponent))
+            projectileComponent.Initialize(m_sourceTower);
     }
 
     public void InstantiateAtParentTransform()
     {
-        Instantiate(prefabToInstantiate, parent.position, parent.rotation);
+        GameObject instantiatedObject = Instantiate(prefabToInstantiate, parent.position, parent.rotation);
+
+        if (instantiatedObject.TryGetComponent(out ProjectileComponent projectileComponent))
+            projectileComponent.Initialize(m_sourceTower);
     }
 }
