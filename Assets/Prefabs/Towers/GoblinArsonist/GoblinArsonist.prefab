@@ -151,7 +151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
       propertyPath: m_namedProperties.Array.data[1].m_propertyValue
-      value: 0.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7290648557745749082, guid: d7ca4d5917692834a8e89862d88a77d4, type: 3}
       propertyPath: m_namedProperties.Array.data[2].m_propertyValue
