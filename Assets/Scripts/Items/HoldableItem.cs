@@ -36,11 +36,13 @@ public abstract class HoldableItem : MonoBehaviour
     private bool isHeld = false;
 
     private float returnDuration = 0.5f;
-    private float initialMouseMoveThreshold = 0.5f;
+    private float initialMouseMoveThreshold = 0.1f;
     private float mouseDistance = 0.0f;
     private bool hasDoneInitialMove = false;
 
     private ItemSlot holdingSlot = null;
+
+    private List<GameStateTracker.GameState> possibleHoldingStates = new() { GameStateTracker.GameState.Shop, GameStateTracker.GameState.Track };
 
     private ItemZone.Zone m_currentZone = ItemZone.Zone.Empty;
     public ItemZone.Zone currentZone 
@@ -52,7 +54,7 @@ public abstract class HoldableItem : MonoBehaviour
         set
         {
             m_currentZone = value;
-            CheckActiveInNewState(GameStateTracker.Instance.currentState);
+            //CheckActiveInNewState(GameStateTracker.Instance.currentState);
         }
     }
 
@@ -62,8 +64,8 @@ public abstract class HoldableItem : MonoBehaviour
         if (name == string.Empty)
             name = GetType().Name;
 
-        CheckActiveInNewState(GameStateTracker.Instance.currentState);
-        GameStateTracker.Instance.OnGameStateChange.AddListener(CheckActiveInNewState);
+        //CheckActiveInNewState(GameStateTracker.Instance.currentState);
+        //GameStateTracker.Instance.OnGameStateChange.AddListener(CheckActiveInNewState);
     }
 
     protected virtual void FixedUpdate()
@@ -74,7 +76,10 @@ public abstract class HoldableItem : MonoBehaviour
 
     public bool TryHoldStarted()
     {
-        if (!isHoldable)
+        if (!isHoldable || !possibleHoldingStates.Contains(GameStateTracker.Instance.currentState))
+            return false;
+
+        if((currentZone == ItemZone.Zone.Shop) && GameStateTracker.Instance.currentState != GameStateTracker.GameState.Shop)
             return false;
 
         SetFollowMousePosition(true);
@@ -97,7 +102,7 @@ public abstract class HoldableItem : MonoBehaviour
     private void FollowMousePosition()
     {
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        newPosition.y = 0.0f;
+        newPosition.y = 0.01f;
 
         mouseDistance = Vector3.Distance(newPosition, transform.position);
 
