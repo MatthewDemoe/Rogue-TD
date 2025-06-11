@@ -12,7 +12,8 @@ public class TrackCreator : MonoBehaviour
 
     const float POISSON_RANGE = 50.0f;
     const int POISSON_RETRIES = 30;
-    const float POISSON_PERCENTAGE = 0.85f;
+    const float EDGE_PERCENTAGE = 0.85f;
+    const float POISSON_PERCENTAGE = 0.75f;
 
     [SerializeField]
     MeshCollider trackCollider;
@@ -142,7 +143,7 @@ public class TrackCreator : MonoBehaviour
         Vector3 outOfBounds = trackBounds.center + (direction * trackBounds.size.magnitude);
         Vector3 closestPoint = trackBounds.ClosestPoint(outOfBounds);
 
-        return new float3(closestPoint.x, closestPoint.z, 0.0f);
+        return new float3(closestPoint.x, closestPoint.z, 0.0f) * EDGE_PERCENTAGE;
     }
 
     Vector2 CreateVectorInBounds()
