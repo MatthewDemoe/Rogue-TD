@@ -6,6 +6,7 @@ using UnityEngine.Splines;
 public class SplineSampler : MonoBehaviour
 {
     private SplineContainer m_splineContainer;
+    private TrackCreator m_trackCreator;
 
     private MeshFilter m_meshFilter;
     private MeshFilter m_directionMeshFilter;
@@ -29,8 +30,9 @@ public class SplineSampler : MonoBehaviour
     private void Awake()
     {
         m_splineContainer = GetComponent<SplineContainer>();
-        m_meshFilter = GetComponent<MeshFilter>();
+        m_trackCreator = GetComponent<TrackCreator>();
 
+        m_meshFilter = GetComponent<MeshFilter>();
         m_directionMeshFilter = directionIndicator.GetComponent<MeshFilter>();
     }
 
@@ -53,6 +55,9 @@ public class SplineSampler : MonoBehaviour
 
     private void GetVertices()
     {
+        m_vertsP1.Clear();
+        m_vertsP2.Clear();
+
         float step = 1.0f / splineResolution;
 
         for (int i = 0; i < splineResolution; i++)
@@ -123,5 +128,11 @@ public class SplineSampler : MonoBehaviour
 
         m_meshFilter.mesh.RecalculateNormals();
         m_directionMeshFilter.mesh.RecalculateNormals();
+
+        if (trackMesh.bounds.extents.y > 0.01f)
+        {
+            m_trackCreator.GenerateTrackPoints();
+            BuildMesh();
+        }
     }
 }

@@ -39,10 +39,20 @@ public class TrackCreator : MonoBehaviour
 
         trackBounds = trackCollider.bounds;
 
+        GenerateTrackPoints();
+    }
+
+    public void GenerateTrackPoints()
+    {
+        sampling.Clear();
+
+        if(splineContainer.Splines.Count > 0)
+            splineContainer.RemoveSplineAt(0);
+
         AddPoints();
 
-        if(TryGetComponent(out SplineInstantiate splineInstantiate))
-            splineInstantiate.UpdateInstances();        
+        if (TryGetComponent(out SplineInstantiate splineInstantiate))
+            splineInstantiate.UpdateInstances();
     }
 
     private void AddPoints()
