@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: m_difficultyRating
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8135924304005443006, guid: d0586a649e42444499f8c083ed33fe23, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 306d206ddc3355c438bd63e8dbe85891, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
