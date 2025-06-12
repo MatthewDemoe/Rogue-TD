@@ -2432,9 +2432,21 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 540421849617690274, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759081582152464024, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 1998296934612062922, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
       propertyPath: m_Name
       value: Track
+      objectReference: {fileID: 0}
+    - target: {fileID: 2305447784130018958, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 2336607687605075349, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
       propertyPath: eventToTrigger.m_PersistentCalls.m_Calls.Array.size
@@ -2527,6 +2539,10 @@ PrefabInstance:
     - target: {fileID: 4907077766381329031, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
       propertyPath: m_Convex
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365907421083336077, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6176119157904262603, guid: f20f7a46f96669b4aa8d13a7007bd902, type: 3}
       propertyPath: m_LocalPosition.x
