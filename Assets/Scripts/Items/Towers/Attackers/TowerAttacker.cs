@@ -25,6 +25,9 @@ public abstract class TowerAttacker : MonoBehaviour
 
     protected virtual void TryAttack()
     {
+        if (towerProperties.currentZone != ItemZone.Zone.Track)
+            return;
+
         timeSinceLastAttack += Time.fixedDeltaTime;
 
         if (!towerProperties.enemyTracker.enemiesInRange.Any() || (timeSinceLastAttack < attackRateProperty.propertyValue))
