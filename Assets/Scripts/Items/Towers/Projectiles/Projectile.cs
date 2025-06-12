@@ -14,8 +14,6 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        print($"Projectile collision");
-
         Destroy(gameObject);
     }
 }

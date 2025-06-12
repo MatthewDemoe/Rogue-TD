@@ -7,6 +7,22 @@ using UnityEngine.Splines;
 
 public class LevelProperties : MonoBehaviour
 {
+    private static LevelProperties _instance = null;
+
+    public static LevelProperties Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                GameObject obj = new GameObject("LevelProperties");
+                _instance = obj.AddComponent<LevelProperties>();               
+            }
+
+            return _instance;
+        }
+    }
+
     public int numWaves { get; private set; } = 15;
     public int currentWaveNum { get; private set; } = 0;
 
@@ -20,6 +36,26 @@ public class LevelProperties : MonoBehaviour
     public static UnityEvent OnWaveStart { get; } = new();
 
     public static UnityEvent OnWaveComplete { get; } = new();
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        _instance = this;
+
+        if (trackSpline == null)
+        {
+            trackSpline = FindFirstObjectByType<SplineContainer>();
+            if (trackSpline == null)
+            {
+                Debug.LogError("No SplineContainer found in the scene.");
+            }
+        }
+    }
 
     private void Start()
     {
@@ -80,5 +116,19 @@ public class LevelProperties : MonoBehaviour
             CreateEnemy(waveAttributes.waveEnemy);
             yield return new WaitForSeconds(enemyAttributes.spawnInterval);
         }
+    }
+
+    public Dictionary<EnemyAttributes, int> GetEnemyCounts()
+    {
+        Wave currentWave = waveGenerator.waves[currentWaveNum];
+        Dictionary<EnemyAttributes, int> enemyCounts = new();
+
+        currentWave.waveAttributes.ForEach(waveAttribute =>
+        {
+            EnemyAttributes enemyAttributes = waveAttribute.waveEnemy.GetComponent<EnemyAttributes>();           
+            enemyCounts[enemyAttributes] = (int)(waveAttribute.enemyAmount * enemyAttributes.spawnAmountMultiplier);
+        });
+
+        return enemyCounts;
     }
 }

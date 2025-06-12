@@ -147,6 +147,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_spriteRenderer: {fileID: 8135924304005443006}
 --- !u!114 &4176557286121076725
 MonoBehaviour:
   m_ObjectHideFlags: 0

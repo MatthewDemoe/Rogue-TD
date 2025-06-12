@@ -63,6 +63,11 @@ public class EnemyAttributes : MonoBehaviour
     public UnityEvent OnSpeedChanged { get { return m_OnSpeedChanged; } }
     public UnityEvent<float> OnHealthChanged { get { return m_OnHealthChanged; } }
 
+    [SerializeField]
+    private SpriteRenderer m_spriteRenderer;
+
+    public SpriteRenderer spriteRenderer => m_spriteRenderer;
+
     private void Awake()
     {
         if(splineAnimate == null)
@@ -73,12 +78,13 @@ public class EnemyAttributes : MonoBehaviour
         OnSpeedChanged.AddListener(AdjustAnimationDuration);
         OnSpeedChanged.Invoke();
         OnHealthChanged.AddListener(CheckIfKilled);
+
+        if(m_spriteRenderer is null)
+            m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void TakeDamage(float amount)
     {
-        print($"Taking {amount} damage.");
-
         damageTaken += amount;
         OnHealthChanged.Invoke(healthPercentage);
     }
@@ -95,7 +101,6 @@ public class EnemyAttributes : MonoBehaviour
     private void AdjustAnimationDuration()
     {
         splineAnimate.Duration = BASE_SPLINE_DURATION / currentSpeed;
-        Debug.Log($"New Speed : {currentSpeed}");
     }
 
     public void AddSpeedMultiplier(float newSpeedMultiplier, float duration)

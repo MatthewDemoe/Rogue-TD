@@ -15,7 +15,7 @@ public class GameStateTracker
         } 
     }
 
-    public enum GameState { Shop, Track, Level }
+    public enum GameState { Shop, Track, Level, Score }
     public GameState currentState { get; private set; } = GameState.Track;
 
     public UnityEvent<GameState> OnGameStateChange { get; private set; } = new UnityEvent<GameState>();
